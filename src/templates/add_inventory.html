@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block title %}Agregar artículo — Inventario Coca-Cola{% endblock %}
+
+{% block content %}
+  <div class="card">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
+      <div>
+        <h2 style="margin:0 0 6px 0;">Agregar artículo</h2>
+        <div class="small">Rellena los datos para agregar un nuevo artículo</div>
+      </div>
+      <div class="controls">
+        <a class="btn secondary" href="{{ url_for('inventory_view') }}">Volver al inventario</a>
+      </div>
+    </div>
+
+    <form method="post" novalidate>
+      {{ form.hidden_tag() }}
+      <div class="form-row">
+        <div class="field">
+          {{ form.id.label }}
+          {# mostrar el id sugerido y evitar modificación manual (readonly) #}
+          {{ form.id(readonly=True) }}
+          {% if suggested_id %}
+            <div class="small muted" style="margin-top:6px;">ID sugerido: {{ suggested_id }}</div>
+          {% endif %}
+        </div>
+        <div class="field">
+          {{ form.code.label }}{{ form.code(class="") }}
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="field" style="flex:2">
+          {{ form.product.label }}{{ form.product(size=64) }}
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="field">{{ form.shelves.label }}{{ form.shelves() }}</div>
+        <div class="field">{{ form.floors.label }}{{ form.floors() }}</div>
+        <div class="field">{{ form.packs.label }}{{ form.packs() }}</div>
+      </div>
+
+      <div class="actions" style="margin-top:10px;">
+        <button class="btn" type="submit">Agregar</button>
+        <a class="btn secondary" href="{{ url_for('inventory_view') }}">Cancelar</a>
+      </div>
+    </form>
+  </div>
+{% endblock %}

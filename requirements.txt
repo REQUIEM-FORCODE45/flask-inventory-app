@@ -1,0 +1,6 @@
+Flask==3.0.0
+Werkzeug==3.0.6
+flask-pymongo==3.0.1
+Flask-WTF==1.0.0
+pymongo==4.1.1
+python-dotenv==0.19.2

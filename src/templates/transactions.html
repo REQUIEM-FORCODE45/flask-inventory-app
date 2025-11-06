@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block title %}Transacciones — Inventario {% endblock %}
+
+{% block content %}
+  <div class="card">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
+      <div>
+        <h2 style="margin:0 0 6px 0;">Transacciones</h2>
+        <div class="small">Historial de transacciones</div>
+      </div>
+      <div class="controls">
+        <a class="btn" href="{{ url_for('record_transaction') }}">Registrar transacción</a>
+        <a class="btn secondary" href="{{ url_for('index') }}">Volver</a>
+      </div>
+    </div>
+
+    {% if transactions_list %}
+      <div style="overflow:auto;">
+      <table>
+        <thead>
+          <tr>
+            <th>_id</th><th>id</th><th>date</th><th>product</th><th>total</th><th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for tx in transactions_list %}
+          <tr>
+            <td class="small">{{ tx._id }}</td>
+            <td>{{ tx.id }}</td>
+            <td>{{ tx.date }}</td>
+            <td>{{ tx.product }}</td>
+            <td>{{ tx.total }}</td>
+            <td>
+            <div class="actions">
+              <a class="btn secondary" href="{{ url_for('edit_transaction', id=tx._id) }}">Editar</a>
+              <form method="post" action="{{ url_for('delete_transaction', id=tx._id) }}" style="display:inline;margin:0;">
+                <!-- Si usas CSRF, descomenta la siguiente línea -->
+                {# {{ csrf_token() }} #}
+                <button class="btn danger" type="submit" onclick="return confirm('Eliminar esta transacción?')">Eliminar</button>
+              </form>
+            </div>
+            </td>
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+      </div>
+    {% else %}
+      <p class="muted">No hay transacciones registradas.</p>
+    {% endif %}
+  </div>
+{% endblock %}

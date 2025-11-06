@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block title %}Inventario — Inventario Coca-Cola{% endblock %}
+
+{% block content %}
+  <div class="card">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
+      <div>
+        <h2 style="margin:0 0 6px 0;">Inventario</h2>
+        <div class="small">Lista de artículos disponibles</div>
+      </div>
+      <div class="controls">
+        <a class="btn" href="{{ url_for('add_inventory') }}">Agregar artículo</a>
+        <a class="btn secondary" href="{{ url_for('index') }}">Volver</a>
+      </div>
+    </div>
+
+    {% if inventory_list %}
+      <div style="overflow:auto;">
+      <table>
+        <thead>
+          <tr>
+            <th>_id</th><th>id</th><th>code</th><th>product</th><th>shelves</th><th>floors</th><th>packs</th><th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for it in inventory_list %}
+          <tr>
+            <td class="small">{{ it._id }}</td>
+            <td>{{ it.id }}</td>
+            <td>{{ it.code }}</td>
+            <td>{{ it.product }}</td>
+            <td>{{ it.shelves }}</td>
+            <td>{{ it.floors }}</td>
+            <td>{{ it.packs }}</td>
+            <td>
+            <div class="actions">
+              <a class="btn secondary" href="{{ url_for('edit_inventory', id=it._id) }}">Editar</a>
+              <form method="post" action="{{ url_for('delete_inventory', id=it._id) }}" style="display:inline;margin:0;">
+                <!-- Si usas CSRF, descomenta la siguiente línea -->
+                {# {{ csrf_token() }} #}
+                <button class="btn danger" type="submit" onclick="return confirm('Eliminar este registro de inventario?')">Eliminar</button>
+              </form>
+            </div>
+            </td>
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+      </div>
+    {% else %}
+      <p class="muted">No hay registros de inventario.</p>
+    {% endif %}
+  </div>
+{% endblock %}

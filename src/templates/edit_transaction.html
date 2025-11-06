@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+
+{% block title %}Editar transacción — Flask Inventory{% endblock %}
+
+{% block content %}
+  <div class="card">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
+      <div>
+        <h2 style="margin:0 0 6px 0;">Editar transacción</h2>
+        <div class="small">Ajusta producto/total. La fecha permanece inalterable.</div>
+      </div>
+      <div class="controls">
+        <a class="btn secondary" href="{{ url_for('transactions_view') }}">Volver</a>
+      </div>
+    </div>
+
+    <form method="post" novalidate id="edit-tx-form">
+      {{ form.hidden_tag() }}
+      <div class="form-row">
+        <div class="field">{{ form.id.label }}{{ form.id(readonly=True) }}</div>
+        <div class="field">
+          <label>Fecha (no editable)</label>
+          <input type="text" value="{{ stored_date if stored_date is string else stored_date }}" readonly style="background:#f3f4f6;border-radius:6px;padding:8px;border:1px solid rgba(15,23,42,0.06);">
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="field">
+          <label for="{{ form.product.id }}">Producto</label>
+          <!-- permitir seleccionar inventario por id o editar texto -->
+          <select name="{{ form.product.name }}" id="{{ form.product.id }}">
+            <option value="">-- Mantener/seleccionar --</option>
+            {% for inv in (find_inventory() if find_inventory else []) %}
+              <option value="{{ inv._id }}" {% if form.product.data and (form.product.data==inv._id or form.product.data==inv.product) %}selected{% endif %}>{{ inv.product }}{% if inv.code %} — {{ inv.code }}{% endif %}</option>
+            {% endfor %}
+          </select>
+          <div style="margin-top:8px;">
+            <label class="small">Producto (manual)</label>
+            <input type="text" name="{{ form.product.name }}_custom" placeholder="Nombre manual (opcional)">
+          </div>
+        </div>
+
+        <div class="field">
+          <label>Total</label>
+          {{ form.total() }}
+          <div class="small muted">Puedes ingresar un total manual o usar los campos temporales abajo para recalcular.</div>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="field">
+          <label class="small">Recalcular (opcional)</label>
+          <div class="form-row">
+            <div class="field"><input name="temp_shelves" type="number" min="0" step="1" placeholder="Shelves"></div>
+            <div class="field"><input name="temp_floors" type="number" min="0" step="1" placeholder="Floors"></div>
+            <div class="field"><input name="temp_packs" type="number" min="0" step="1" placeholder="Packs"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="actions" style="margin-top:10px;">
+        <button class="btn" type="submit">Guardar cambios</button>
+        <a class="btn secondary" href="{{ url_for('transactions_view') }}">Cancelar</a>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    // Si se escribe un nombre manual, lo enviamos en el campo que espera WTForm
+    (function(){
+      const form = document.getElementById('edit-tx-form');
+      const select = document.getElementById('{{ form.product.id }}');
+      form.addEventListener('submit', function(){
+        const custom = form.querySelector('input[name="{{ form.product.name }}_custom"]');
+        if (custom && custom.value.trim().length > 0){
+          let hidden = form.querySelector('input[name="{{ form.product.name }}"]');
+          if (!hidden){
+            hidden = document.createElement('input');
+            hidden.type = 'hidden';
+            hidden.name = "{{ form.product.name }}";
+            form.appendChild(hidden);
+          }
+          hidden.value = custom.value.trim();
+          if (select) select.disabled = true;
+        }
+      });
+    })();
+  </script>
+{% endblock %}

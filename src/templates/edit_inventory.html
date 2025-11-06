@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block title %}Editar artículo — Flask Inventory{% endblock %}
+
+{% block content %}
+  <div class="card">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
+      <div>
+        <h2 style="margin:0 0 6px 0;">Editar artículo</h2>
+        <div class="small">Modifica los campos y guarda</div>
+      </div>
+      <div class="controls">
+        <a class="btn secondary" href="{{ url_for('inventory_view') }}">Volver</a>
+      </div>
+    </div>
+
+    <form method="post" novalidate>
+      {{ form.hidden_tag() }}
+      <div class="form-row">
+        <div class="field">
+          {{ form.id.label }}
+          {# bloquear edición del id desde el HTML (readonly) #}
+          {{ form.id(readonly=True) }}
+        </div>
+        <div class="field">
+          {{ form.code.label }}{{ form.code() }}
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="field" style="flex:2">
+          {{ form.product.label }}{{ form.product(size=64) }}
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="field">{{ form.shelves.label }}{{ form.shelves() }}</div>
+        <div class="field">{{ form.floors.label }}{{ form.floors() }}</div>
+        <div class="field">{{ form.packs.label }}{{ form.packs() }}</div>
+      </div>
+
+      <div class="actions" style="margin-top:10px;">
+        <button class="btn" type="submit">Guardar cambios</button>
+        <a class="btn secondary" href="{{ url_for('inventory_view') }}">Cancelar</a>
+      </div>
+    </form>
+  </div>
+{% endblock %}

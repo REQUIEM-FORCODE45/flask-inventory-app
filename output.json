@@ -1,0 +1,3068 @@
+[
+  {
+    "_id": {
+      "$oid": "690992a5c2e5a04ea3534899"
+    },
+    "id": {
+      "$numberInt": "1"
+    },
+    "code": {
+      "$numberInt": "160052"
+    },
+    "product": "COCA-COLA 6,5OZ VIR(30)",
+    "shelves": {
+      "$numberInt": "45"
+    },
+    "floors": {
+      "$numberInt": "9"
+    },
+    "packs": {
+      "$numberInt": "30"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "690992a5c2e5a04ea353489a"
+    },
+    "id": {
+      "$numberInt": "2"
+    },
+    "code": {
+      "$numberInt": "56702"
+    },
+    "product": "QUATRO TJA 6,5OZ VIR(30)",
+    "shelves": {
+      "$numberInt": "45"
+    },
+    "floors": {
+      "$numberInt": "9"
+    },
+    "packs": {
+      "$numberInt": "30"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "690992a5c2e5a04ea353489b"
+    },
+    "id": {
+      "$numberInt": "3"
+    },
+    "code": {
+      "$numberInt": "160069"
+    },
+    "product": "SPRITE LL6,5 OZ",
+    "shelves": {
+      "$numberInt": "45"
+    },
+    "floors": {
+      "$numberInt": "9"
+    },
+    "packs": {
+      "$numberInt": "30"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "690992a5c2e5a04ea353489c"
+    },
+    "id": {
+      "$numberInt": "4"
+    },
+    "code": {
+      "$numberInt": "56623"
+    },
+    "product": "PREMIO ROJO 250 ML RGB",
+    "shelves": {
+      "$numberInt": "45"
+    },
+    "floors": {
+      "$numberInt": "9"
+    },
+    "packs": {
+      "$numberInt": "30"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "690992a5c2e5a04ea353489d"
+    },
+    "id": {
+      "$numberInt": "5"
+    },
+    "code": {
+      "$numberInt": "160053"
+    },
+    "product": "COCA-COLA 350ML VIR(30)",
+    "shelves": {
+      "$numberInt": "45"
+    },
+    "floors": {
+      "$numberInt": "9"
+    },
+    "packs": {
+      "$numberInt": "30"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "690992a5c2e5a04ea353489e"
+    },
+    "id": {
+      "$numberInt": "6"
+    },
+    "code": {
+      "$numberInt": "135763"
+    },
+    "product": "COCA COLA ZERO 350 ML VIR",
+    "shelves": {
+      "$numberInt": "45"
+    },
+    "floors": {
+      "$numberInt": "9"
+    },
+    "packs": {
+      "$numberInt": "30"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "690992a5c2e5a04ea353489f"
+    },
+    "id": {
+      "$numberInt": "7"
+    },
+    "code": {
+      "$numberInt": "56622"
+    },
+    "product": "PREMIO ROJO 350 ML (30)",
+    "shelves": {
+      "$numberInt": "45"
+    },
+    "floors": {
+      "$numberInt": "9"
+    },
+    "packs": {
+      "$numberInt": "30"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "690992a5c2e5a04ea35348a0"
+    },
+    "id": {
+      "$numberInt": "8"
+    },
+    "code": {
+      "$numberInt": "56705"
+    },
+    "product": "QUATRO TJA 350ML VIR(30)",
+    "shelves": {
+      "$numberInt": "45"
+    },
+    "floors": {
+      "$numberInt": "9"
+    },
+    "packs": {
+      "$numberInt": "30"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "690992a5c2e5a04ea35348a1"
+    },
+    "id": {
+      "$numberInt": "9"
+    },
+    "code": {
+      "$numberInt": "160070"
+    },
+    "product": "SPRITE LL 350ML VIR(30)",
+    "shelves": {
+      "$numberInt": "45"
+    },
+    "floors": {
+      "$numberInt": "9"
+    },
+    "packs": {
+      "$numberInt": "30"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "690992a5c2e5a04ea35348a2"
+    },
+    "id": {
+      "$numberInt": "10"
+    },
+    "code": {
+      "$numberInt": "160033"
+    },
+    "product": "SCHWEPPES SODA 350 ML VIR (30)",
+    "shelves": {
+      "$numberInt": "45"
+    },
+    "floors": {
+      "$numberInt": "9"
+    },
+    "packs": {
+      "$numberInt": "30"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "690992a5c2e5a04ea35348a3"
+    },
+    "id": {
+      "$numberInt": "11"
+    },
+    "code": {
+      "$numberInt": "135666"
+    },
+    "product": "COCA COLA 1.25LT VIR(12)",
+    "shelves": {
+      "$numberInt": "40"
+    },
+    "floors": {
+      "$numberInt": "10"
+    },
+    "packs": {
+      "$numberInt": "12"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "690992a5c2e5a04ea35348a4"
+    },
+    "id": {
+      "$numberInt": "12"
+    },
+    "code": {
+      "$numberInt": "136159"
+    },
+    "product": "COCA-COLA SO 1 LT NR (12)",
+    "shelves": {
+      "$numberInt": "75"
+    },
+    "floors": {
+      "$numberInt": "15"
+    },
+    "packs": {
+      "$numberInt": "12"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "690992a5c2e5a04ea35348a5"
+    },
+    "id": {
+      "$numberInt": "13"
+    },
+    "code": {
+      "$numberInt": "136113"
+    },
+    "product": "ESPEJO CCSO 1.5LT PET(12)",
+    "shelves": {
+      "$numberInt": "65"
+    },
+    "floors": {
+      "$numberInt": "13"
+    },
+    "packs": {
+      "$numberInt": "12"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "690992a5c2e5a04ea35348a6"
+    },
+    "id": {
+      "$numberInt": "14"
+    },
+    "code": {
+      "$numberInt": "135664"
+    },
+    "product": "COCA-COLA 1.5 LT NR (12) Nvo",
+    "shelves": {
+      "$numberInt": "65"
+    },
+    "floors": {
+      "$numberInt": "13"
+    },
+    "packs": {
+      "$numberInt": "12"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "690992a5c2e5a04ea35348a7"
+    },
+    "id": {
+      "$numberInt": "15"
+    },
+    "code": {
+      "$numberInt": "135757"
+    },
+    "product": "COCA COLA ZERO 1,5 NR (12)",
+    "shelves": {
+      "$numberInt": "65"
+    },
+    "floors": {
+      "$numberInt": "13"
+    },
+    "packs": {
+      "$numberInt": "12"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "690992a5c2e5a04ea35348a8"
+    },
+    "id": {
+      "$numberInt": "16"
+    },
+    "code": {
+      "$numberInt": "56651"
+    },
+    "product": "PREMIO ROJO 1.5 L",
+    "shelves": {
+      "$numberInt": "65"
+    },
+    "floors": {
+      "$numberInt": "13"
+    },
+    "packs": {
+      "$numberInt": "12"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "690992a5c2e5a04ea35348a9"
+    },
+    "id": {
+      "$numberInt": "17"
+    },
+    "code": {
+      "$numberInt": "56709"
+    },
+    "product": "QUATRO  1,5LT",
+    "shelves": {
+      "$numberInt": "65"
+    },
+    "floors": {
+      "$numberInt": "13"
+    },
+    "packs": {
+      "$numberInt": "12"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "690992a5c2e5a04ea35348aa"
+    },
+    "id": {
+      "$numberInt": "18"
+    },
+    "code": {
+      "$numberInt": "160102"
+    },
+    "product": "SRITE LIMA LIMON 1,5LT",
+    "shelves": {
+      "$numberInt": "65"
+    },
+    "floors": {
+      "$numberInt": "13"
+    },
+    "packs": {
+      "$numberInt": "12"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "690992a5c2e5a04ea35348ab"
+    },
+    "id": {
+      "$numberInt": "19"
+    },
+    "code": {
+      "$numberInt": "160100"
+    },
+    "product": "SCHEPPES GINGER 1,5 LTS",
+    "shelves": {
+      "$numberInt": "65"
+    },
+    "floors": {
+      "$numberInt": "13"
+    },
+    "packs": {
+      "$numberInt": "12"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "690992a5c2e5a04ea35348ac"
+    },
+    "id": {
+      "$numberInt": "20"
+    },
+    "code": {
+      "$numberInt": "160101"
+    },
+    "product": "SCHEPPES SODA 1,5 LTS",
+    "shelves": {
+      "$numberInt": "65"
+    },
+    "floors": {
+      "$numberInt": "13"
+    },
+    "packs": {
+      "$numberInt": "12"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "690992a5c2e5a04ea35348ad"
+    },
+    "id": {
+      "$numberInt": "21"
+    },
+    "code": {
+      "$numberInt": "160099"
+    },
+    "product": "KOLA ROMA 1,5 LTS",
+    "shelves": {
+      "$numberInt": "65"
+    },
+    "floors": {
+      "$numberInt": "13"
+    },
+    "packs": {
+      "$numberInt": "12"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "690992a5c2e5a04ea35348ae"
+    },
+    "id": {
+      "$numberInt": "22"
+    },
+    "code": {
+      "$numberInt": "136133"
+    },
+    "product": "COCA COLA 2.25L PET(8) EINSTEIN",
+    "shelves": {
+      "$numberInt": "60"
+    },
+    "floors": {
+      "$numberInt": "12"
+    },
+    "packs": {
+      "$numberInt": "8"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "690992a5c2e5a04ea35348af"
+    },
+    "id": {
+      "$numberInt": "23"
+    },
+    "code": {
+      "$numberInt": "135662"
+    },
+    "product": "COCA-COLA 3 LITROS PET(6) Nvo",
+    "shelves": {
+      "$numberInt": "60"
+    },
+    "floors": {
+      "$numberInt": "15"
+    },
+    "packs": {
+      "$numberInt": "6"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "690992a5c2e5a04ea35348b0"
+    },
+    "id": {
+      "$numberInt": "24"
+    },
+    "code": {
+      "$numberInt": "160124"
+    },
+    "product": "SPRITE 3 LTS PET (6)",
+    "shelves": {
+      "$numberInt": "60"
+    },
+    "floors": {
+      "$numberInt": "15"
+    },
+    "packs": {
+      "$numberInt": "6"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "690992a5c2e5a04ea35348b1"
+    },
+    "id": {
+      "$numberInt": "25"
+    },
+    "code": {
+      "$numberInt": "56711"
+    },
+    "product": "QUATRO 3 LTS PET (6)",
+    "shelves": {
+      "$numberInt": "60"
+    },
+    "floors": {
+      "$numberInt": "15"
+    },
+    "packs": {
+      "$numberInt": "6"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "690992a5c2e5a04ea35348b2"
+    },
+    "id": {
+      "$numberInt": "26"
+    },
+    "code": {
+      "$numberInt": "56625"
+    },
+    "product": "PREMIO ROJO 3 LTS  PET (6)",
+    "shelves": {
+      "$numberInt": "60"
+    },
+    "floors": {
+      "$numberInt": "15"
+    },
+    "packs": {
+      "$numberInt": "6"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "690992a5c2e5a04ea35348b3"
+    },
+    "id": {
+      "$numberInt": "27"
+    },
+    "code": {
+      "$numberInt": "135663"
+    },
+    "product": "CC PET 2.5LTNR 8 PK  Nvo",
+    "shelves": {
+      "$numberInt": "60"
+    },
+    "floors": {
+      "$numberInt": "12"
+    },
+    "packs": {
+      "$numberInt": "8"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "690992a5c2e5a04ea35348b4"
+    },
+    "id": {
+      "$numberInt": "28"
+    },
+    "code": {
+      "$numberInt": "135755"
+    },
+    "product": "COCA COLA ZERO 2.5 LTS (8)",
+    "shelves": {
+      "$numberInt": "60"
+    },
+    "floors": {
+      "$numberInt": "12"
+    },
+    "packs": {
+      "$numberInt": "8"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "690992a5c2e5a04ea35348b5"
+    },
+    "id": {
+      "$numberInt": "29"
+    },
+    "code": {
+      "$numberInt": "56820"
+    },
+    "product": "QUATRO CHOICE 2.5L PET (8)",
+    "shelves": {
+      "$numberInt": "60"
+    },
+    "floors": {
+      "$numberInt": "12"
+    },
+    "packs": {
+      "$numberInt": "8"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "690992a5c2e5a04ea35348b6"
+    },
+    "id": {
+      "$numberInt": "30"
+    },
+    "code": {
+      "$numberInt": "160040"
+    },
+    "product": "COCA-COLA 20 OZ PET(15)",
+    "shelves": {
+      "$numberInt": "119"
+    },
+    "floors": {
+      "$numberInt": "17"
+    },
+    "packs": {
+      "$numberInt": "15"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "690992a5c2e5a04ea35348b7"
+    },
+    "id": {
+      "$numberInt": "31"
+    },
+    "code": {
+      "$numberInt": "135759"
+    },
+    "product": "COCA-COLA ZERO 20 OZ PET(15)",
+    "shelves": {
+      "$numberInt": "119"
+    },
+    "floors": {
+      "$numberInt": "17"
+    },
+    "packs": {
+      "$numberInt": "15"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "690992a5c2e5a04ea35348b8"
+    },
+    "id": {
+      "$numberInt": "32"
+    },
+    "code": {
+      "$numberInt": "136415"
+    },
+    "product": "COCA COLA  500ML PET(12)",
+    "shelves": {
+      "$numberInt": "154"
+    },
+    "floors": {
+      "$numberInt": "22"
+    },
+    "packs": {
+      "$numberInt": "12"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "690992a5c2e5a04ea35348b9"
+    },
+    "id": {
+      "$numberInt": "33"
+    },
+    "code": {
+      "$numberInt": "136416"
+    },
+    "product": "COCA COLA ZERO 500ML PET(12)",
+    "shelves": {
+      "$numberInt": "154"
+    },
+    "floors": {
+      "$numberInt": "22"
+    },
+    "packs": {
+      "$numberInt": "12"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "690992a5c2e5a04ea35348ba"
+    },
+    "id": {
+      "$numberInt": "34"
+    },
+    "code": {
+      "$numberInt": "135760"
+    },
+    "product": "COCA COLA SA 400ML",
+    "shelves": {
+      "$numberInt": "240"
+    },
+    "floors": {
+      "$numberInt": "30"
+    },
+    "packs": {
+      "$numberInt": "12"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "690992a5c2e5a04ea35348bb"
+    },
+    "id": {
+      "$numberInt": "35"
+    },
+    "code": {
+      "$numberInt": "160318"
+    },
+    "product": "COCA-COLA 400ml PET(12)",
+    "shelves": {
+      "$numberInt": "240"
+    },
+    "floors": {
+      "$numberInt": "30"
+    },
+    "packs": {
+      "$numberInt": "12"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "690992a5c2e5a04ea35348bc"
+    },
+    "id": {
+      "$numberInt": "36"
+    },
+    "code": {
+      "$numberInt": "56452"
+    },
+    "product": "SCHWEPPES SODA 400ML PET (12)",
+    "shelves": {
+      "$numberInt": "240"
+    },
+    "floors": {
+      "$numberInt": "30"
+    },
+    "packs": {
+      "$numberInt": "12"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "690992a5c2e5a04ea35348bd"
+    },
+    "id": {
+      "$numberInt": "37"
+    },
+    "code": {
+      "$numberInt": "56453"
+    },
+    "product": "SCHWEPPES GINGER 400ML PET (12)",
+    "shelves": {
+      "$numberInt": "240"
+    },
+    "floors": {
+      "$numberInt": "30"
+    },
+    "packs": {
+      "$numberInt": "12"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "690992a5c2e5a04ea35348be"
+    },
+    "id": {
+      "$numberInt": "38"
+    },
+    "code": {
+      "$numberInt": "160479"
+    },
+    "product": "KOLA ROMAN 400 ML NR (12)",
+    "shelves": {
+      "$numberInt": "240"
+    },
+    "floors": {
+      "$numberInt": "30"
+    },
+    "packs": {
+      "$numberInt": "12"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "690992a5c2e5a04ea35348bf"
+    },
+    "id": {
+      "$numberInt": "39"
+    },
+    "code": {
+      "$numberInt": "56627"
+    },
+    "product": "PREMIO 400PET",
+    "shelves": {
+      "$numberInt": "240"
+    },
+    "floors": {
+      "$numberInt": "30"
+    },
+    "packs": {
+      "$numberInt": "12"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "690992a5c2e5a04ea35348c0"
+    },
+    "id": {
+      "$numberInt": "40"
+    },
+    "code": {
+      "$numberInt": "160297"
+    },
+    "product": "SPRITE 400PET",
+    "shelves": {
+      "$numberInt": "240"
+    },
+    "floors": {
+      "$numberInt": "30"
+    },
+    "packs": {
+      "$numberInt": "12"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "690992a5c2e5a04ea35348c1"
+    },
+    "id": {
+      "$numberInt": "41"
+    },
+    "code": {
+      "$numberInt": "56706"
+    },
+    "product": "QUATRO 400PET",
+    "shelves": {
+      "$numberInt": "240"
+    },
+    "floors": {
+      "$numberInt": "30"
+    },
+    "packs": {
+      "$numberInt": "12"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "690992a5c2e5a04ea35348c2"
+    },
+    "id": {
+      "$numberInt": "42"
+    },
+    "code": {
+      "$numberInt": "136397"
+    },
+    "product": "COCA COLA ZERO 250 ML (12)",
+    "shelves": {
+      "$numberInt": "288"
+    },
+    "floors": {
+      "$numberInt": "32"
+    },
+    "packs": {
+      "$numberInt": "12"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "690992a5c2e5a04ea35348c3"
+    },
+    "id": {
+      "$numberInt": "43"
+    },
+    "code": {
+      "$numberInt": "160200"
+    },
+    "product": "COCA COLA 250 ML (12)",
+    "shelves": {
+      "$numberInt": "288"
+    },
+    "floors": {
+      "$numberInt": "32"
+    },
+    "packs": {
+      "$numberInt": "12"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "690992a5c2e5a04ea35348c4"
+    },
+    "id": {
+      "$numberInt": "44"
+    },
+    "code": {
+      "$numberInt": "120181"
+    },
+    "product": "MONSTER MANGO X12 473ML LAT(12) MQ",
+    "shelves": {
+      "$numberInt": "1"
+    },
+    "floors": {
+      "$numberInt": "22"
+    },
+    "packs": {
+      "$numberInt": "12"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "690992a5c2e5a04ea35348c5"
+    },
+    "id": {
+      "$numberInt": "45"
+    },
+    "code": {
+      "$numberInt": "120156"
+    },
+    "product": "MONSTER GREEN X12 473ML LAT(12) MQ",
+    "shelves": {
+      "$numberInt": "1"
+    },
+    "floors": {
+      "$numberInt": "22"
+    },
+    "packs": {
+      "$numberInt": "12"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "690992a5c2e5a04ea35348c6"
+    },
+    "id": {
+      "$numberInt": "46"
+    },
+    "code": {
+      "$numberInt": "120182"
+    },
+    "product": "MONSTER PARADISE 473ML LAT(12) MQ",
+    "shelves": {
+      "$numberInt": "1"
+    },
+    "floors": {
+      "$numberInt": "22"
+    },
+    "packs": {
+      "$numberInt": "12"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "690992a5c2e5a04ea35348c7"
+    },
+    "id": {
+      "$numberInt": "47"
+    },
+    "code": {
+      "$numberInt": "120183"
+    },
+    "product": "MONSTER ULTRA 473ML LAT(12) MQ",
+    "shelves": {
+      "$numberInt": "1"
+    },
+    "floors": {
+      "$numberInt": "22"
+    },
+    "packs": {
+      "$numberInt": "12"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "690992a5c2e5a04ea35348c8"
+    },
+    "id": {
+      "$numberInt": "48"
+    },
+    "code": {
+      "$numberInt": "160259"
+    },
+    "product": "MONSTER GREEN LATA 473ML(24)",
+    "shelves": {
+      "$numberInt": "70"
+    },
+    "floors": {
+      "$numberInt": "10"
+    },
+    "packs": {
+      "$numberInt": "24"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "690992a5c2e5a04ea35348c9"
+    },
+    "id": {
+      "$numberInt": "49"
+    },
+    "code": {
+      "$numberInt": "120023"
+    },
+    "product": "MONSTER BLUE ZERO 473 MLLAT(24)",
+    "shelves": {
+      "$numberInt": "70"
+    },
+    "floors": {
+      "$numberInt": "10"
+    },
+    "packs": {
+      "$numberInt": "24"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "690992a5c2e5a04ea35348ca"
+    },
+    "id": {
+      "$numberInt": "50"
+    },
+    "code": {
+      "$numberInt": "120027"
+    },
+    "product": "MONSTER VIOLET  473ML(24)",
+    "shelves": {
+      "$numberInt": "70"
+    },
+    "floors": {
+      "$numberInt": "10"
+    },
+    "packs": {
+      "$numberInt": "24"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "690992a5c2e5a04ea35348cb"
+    },
+    "id": {
+      "$numberInt": "51"
+    },
+    "code": {
+      "$numberInt": "160378"
+    },
+    "product": "MONSTER ULTRA LATA 4 PACK  473ML(24)",
+    "shelves": {
+      "$numberInt": "70"
+    },
+    "floors": {
+      "$numberInt": "10"
+    },
+    "packs": {
+      "$numberInt": "24"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "690992a5c2e5a04ea35348cc"
+    },
+    "id": {
+      "$numberInt": "52"
+    },
+    "code": {
+      "$numberInt": "120057"
+    },
+    "product": "MONSTER MANGO  473ML(24)",
+    "shelves": {
+      "$numberInt": "70"
+    },
+    "floors": {
+      "$numberInt": "10"
+    },
+    "packs": {
+      "$numberInt": "24"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "690992a5c2e5a04ea35348cd"
+    },
+    "id": {
+      "$numberInt": "53"
+    },
+    "code": {
+      "$numberInt": "120112"
+    },
+    "product": "MONSTER PARADAISE 473ML LAT(24)",
+    "shelves": {
+      "$numberInt": "70"
+    },
+    "floors": {
+      "$numberInt": "10"
+    },
+    "packs": {
+      "$numberInt": "24"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "690992a5c2e5a04ea35348ce"
+    },
+    "id": {
+      "$numberInt": "54"
+    },
+    "code": {
+      "$numberInt": "120175"
+    },
+    "product": "MONSTER PIPELINE PUNCH 473ML LAT(24)",
+    "shelves": {
+      "$numberInt": "70"
+    },
+    "floors": {
+      "$numberInt": "10"
+    },
+    "packs": {
+      "$numberInt": "24"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "690992a5c2e5a04ea35348cf"
+    },
+    "id": {
+      "$numberInt": "55"
+    },
+    "code": {
+      "$numberInt": "160186"
+    },
+    "product": "FUZE TEA TE NEGRO DURAZNO PET 400 ML  (6)",
+    "shelves": {
+      "$numberInt": "424"
+    },
+    "floors": {
+      "$numberInt": "53"
+    },
+    "packs": {
+      "$numberInt": "6"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "690992a5c2e5a04ea35348d0"
+    },
+    "id": {
+      "$numberInt": "56"
+    },
+    "code": {
+      "$numberInt": "160187"
+    },
+    "product": "FUZE TEA TE NEGRO LIMON PET 400 (6)",
+    "shelves": {
+      "$numberInt": "424"
+    },
+    "floors": {
+      "$numberInt": "53"
+    },
+    "packs": {
+      "$numberInt": "6"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "690992a5c2e5a04ea35348d1"
+    },
+    "id": {
+      "$numberInt": "57"
+    },
+    "code": {
+      "$numberInt": "160188"
+    },
+    "product": "FUZE TEA TE NEGRO MANZANA PET 400 (6)",
+    "shelves": {
+      "$numberInt": "424"
+    },
+    "floors": {
+      "$numberInt": "53"
+    },
+    "packs": {
+      "$numberInt": "6"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "690992a5c2e5a04ea35348d2"
+    },
+    "id": {
+      "$numberInt": "58"
+    },
+    "code": {
+      "$numberInt": "160223"
+    },
+    "product": "FUZE TEA TE MANGO PET 400 (6)",
+    "shelves": {
+      "$numberInt": "424"
+    },
+    "floors": {
+      "$numberInt": "53"
+    },
+    "packs": {
+      "$numberInt": "6"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "690992a5c2e5a04ea35348d3"
+    },
+    "id": {
+      "$numberInt": "59"
+    },
+    "code": {
+      "$numberInt": "160080"
+    },
+    "product": "FUZE TEA TE N. LIMON 1,2 ML",
+    "shelves": {
+      "$numberInt": "140"
+    },
+    "floors": {
+      "$numberInt": "28"
+    },
+    "packs": {
+      "$numberInt": "6"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "690992a5c2e5a04ea35348d4"
+    },
+    "id": {
+      "$numberInt": "60"
+    },
+    "code": {
+      "$numberInt": "160081"
+    },
+    "product": "FUZE TEA TE N. DURAZNO1.2ML",
+    "shelves": {
+      "$numberInt": "140"
+    },
+    "floors": {
+      "$numberInt": "28"
+    },
+    "packs": {
+      "$numberInt": "6"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "690992a5c2e5a04ea35348d5"
+    },
+    "id": {
+      "$numberInt": "61"
+    },
+    "code": {
+      "$numberInt": "120158"
+    },
+    "product": "DEL VALLE MANDARINA 400 ml pet (12)",
+    "shelves": {
+      "$numberInt": "240"
+    },
+    "floors": {
+      "$numberInt": "30"
+    },
+    "packs": {
+      "$numberInt": "12"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "690992a5c2e5a04ea35348d6"
+    },
+    "id": {
+      "$numberInt": "62"
+    },
+    "code": {
+      "$numberInt": "120117"
+    },
+    "product": "DEL VALLE CITRUS 400 ml pet (12)",
+    "shelves": {
+      "$numberInt": "240"
+    },
+    "floors": {
+      "$numberInt": "30"
+    },
+    "packs": {
+      "$numberInt": "12"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "690992a5c2e5a04ea35348d7"
+    },
+    "id": {
+      "$numberInt": "63"
+    },
+    "code": {
+      "$numberInt": "120159"
+    },
+    "product": "Fresh Mandarina 1,5ml",
+    "shelves": {
+      "$numberInt": "65"
+    },
+    "floors": {
+      "$numberInt": "13"
+    },
+    "packs": {
+      "$numberInt": "12"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "690992a5c2e5a04ea35348d8"
+    },
+    "id": {
+      "$numberInt": "64"
+    },
+    "code": {
+      "$numberInt": "120160"
+    },
+    "product": "FRESH MANDARINA 2.5 LT PET (8)",
+    "shelves": {
+      "$numberInt": "60"
+    },
+    "floors": {
+      "$numberInt": "12"
+    },
+    "packs": {
+      "$numberInt": "8"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "690992a5c2e5a04ea35348d9"
+    },
+    "id": {
+      "$numberInt": "65"
+    },
+    "code": {
+      "$numberInt": "120118"
+    },
+    "product": "DEL VALLE CITRUS 1.5 LTS PET (12)",
+    "shelves": {
+      "$numberInt": "65"
+    },
+    "floors": {
+      "$numberInt": "13"
+    },
+    "packs": {
+      "$numberInt": "12"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "690992a5c2e5a04ea35348da"
+    },
+    "id": {
+      "$numberInt": "66"
+    },
+    "code": {
+      "$numberInt": "120119"
+    },
+    "product": "DEL VALLE CITRUS 2.5 LTS PET (6)",
+    "shelves": {
+      "$numberInt": "60"
+    },
+    "floors": {
+      "$numberInt": "12"
+    },
+    "packs": {
+      "$numberInt": "8"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "690992a5c2e5a04ea35348db"
+    },
+    "id": {
+      "$numberInt": "67"
+    },
+    "code": {
+      "$numberInt": "120064"
+    },
+    "product": "FRESH MANDARINA 188 ML (24)Sin Precio",
+    "shelves": {
+      "$numberInt": "189"
+    },
+    "floors": {
+      "$numberInt": "21"
+    },
+    "packs": {
+      "$numberInt": "24"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "690992a5c2e5a04ea35348dc"
+    },
+    "id": {
+      "$numberInt": "68"
+    },
+    "code": {
+      "$numberInt": "120134"
+    },
+    "product": "FRUTAL MORA 188ML",
+    "shelves": {
+      "$numberInt": "189"
+    },
+    "floors": {
+      "$numberInt": "21"
+    },
+    "packs": {
+      "$numberInt": "24"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "690992a5c2e5a04ea35348dd"
+    },
+    "id": {
+      "$numberInt": "69"
+    },
+    "code": {
+      "$numberInt": "120137"
+    },
+    "product": "DELVALLE FRUTAL MANDARINA - PIÑA",
+    "shelves": {
+      "$numberInt": "189"
+    },
+    "floors": {
+      "$numberInt": "21"
+    },
+    "packs": {
+      "$numberInt": "24"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "690992a5c2e5a04ea35348de"
+    },
+    "id": {
+      "$numberInt": "70"
+    },
+    "code": {
+      "$numberInt": "120136"
+    },
+    "product": "DELVALLE FRUTAL MANGO",
+    "shelves": {
+      "$numberInt": "189"
+    },
+    "floors": {
+      "$numberInt": "21"
+    },
+    "packs": {
+      "$numberInt": "24"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "690992a5c2e5a04ea35348df"
+    },
+    "id": {
+      "$numberInt": "71"
+    },
+    "code": {
+      "$numberInt": "120133"
+    },
+    "product": "FRUTAL MANGOFRS 188 ML TETRA (24)",
+    "shelves": {
+      "$numberInt": "189"
+    },
+    "floors": {
+      "$numberInt": "21"
+    },
+    "packs": {
+      "$numberInt": "24"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "690992a5c2e5a04ea35348e0"
+    },
+    "id": {
+      "$numberInt": "72"
+    },
+    "code": {
+      "$numberInt": "120135"
+    },
+    "product": "FRUTAL SALPICON 188 ML TETRA (24)",
+    "shelves": {
+      "$numberInt": "189"
+    },
+    "floors": {
+      "$numberInt": "21"
+    },
+    "packs": {
+      "$numberInt": "24"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "690992a5c2e5a04ea35348e1"
+    },
+    "id": {
+      "$numberInt": "73"
+    },
+    "code": {
+      "$numberInt": "120188"
+    },
+    "product": "FRUTAL MANGO 1.2L PET (6)",
+    "shelves": {
+      "$numberInt": "1"
+    },
+    "floors": {
+      "$numberInt": "28"
+    },
+    "packs": {
+      "$numberInt": "6"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "690992a5c2e5a04ea35348e2"
+    },
+    "id": {
+      "$numberInt": "74"
+    },
+    "code": {
+      "$numberInt": "120190"
+    },
+    "product": "FRUTAL MANGOFRS 1.2LT PET(6)",
+    "shelves": {
+      "$numberInt": "1"
+    },
+    "floors": {
+      "$numberInt": "28"
+    },
+    "packs": {
+      "$numberInt": "6"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "690992a5c2e5a04ea35348e3"
+    },
+    "id": {
+      "$numberInt": "75"
+    },
+    "code": {
+      "$numberInt": "120191"
+    },
+    "product": "FRUTAL MORA 1.2LT PET(6)",
+    "shelves": {
+      "$numberInt": "1"
+    },
+    "floors": {
+      "$numberInt": "28"
+    },
+    "packs": {
+      "$numberInt": "6"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "690992a5c2e5a04ea35348e4"
+    },
+    "id": {
+      "$numberInt": "76"
+    },
+    "code": {
+      "$numberInt": "120139"
+    },
+    "product": "FRUTAL MORA 946ML TETRA(6)",
+    "shelves": {
+      "$numberInt": "170"
+    },
+    "floors": {
+      "$numberInt": "34"
+    },
+    "packs": {
+      "$numberInt": "6"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "690992a5c2e5a04ea35348e5"
+    },
+    "id": {
+      "$numberInt": "77"
+    },
+    "code": {
+      "$numberInt": "120138"
+    },
+    "product": "FRUTAL MANGOFRS 946ML TETRA(6)",
+    "shelves": {
+      "$numberInt": "170"
+    },
+    "floors": {
+      "$numberInt": "34"
+    },
+    "packs": {
+      "$numberInt": "6"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "690992a5c2e5a04ea35348e6"
+    },
+    "id": {
+      "$numberInt": "78"
+    },
+    "code": {
+      "$numberInt": "120141"
+    },
+    "product": "FRUTAL MANGO 946ML TETRA(6)",
+    "shelves": {
+      "$numberInt": "170"
+    },
+    "floors": {
+      "$numberInt": "34"
+    },
+    "packs": {
+      "$numberInt": "6"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "690992a5c2e5a04ea35348e7"
+    },
+    "id": {
+      "$numberInt": "79"
+    },
+    "code": {
+      "$numberInt": "120142"
+    },
+    "product": "FRUTAL MDR-PIÑA 946ML TETRA(6)",
+    "shelves": {
+      "$numberInt": "170"
+    },
+    "floors": {
+      "$numberInt": "34"
+    },
+    "packs": {
+      "$numberInt": "6"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "690992a5c2e5a04ea35348e8"
+    },
+    "id": {
+      "$numberInt": "80"
+    },
+    "code": {
+      "$numberInt": "120140"
+    },
+    "product": "FRUTAL SALPICON 946ML TETRA(6)",
+    "shelves": {
+      "$numberInt": "170"
+    },
+    "floors": {
+      "$numberInt": "34"
+    },
+    "packs": {
+      "$numberInt": "6"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "690992a5c2e5a04ea35348e9"
+    },
+    "id": {
+      "$numberInt": "81"
+    },
+    "code": {
+      "$numberInt": "120187"
+    },
+    "product": "FRESH CITRUS 250ML PET(12)",
+    "shelves": {
+      "$numberInt": "288"
+    },
+    "floors": {
+      "$numberInt": "32"
+    },
+    "packs": {
+      "$numberInt": "12"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "690992a5c2e5a04ea35348ea"
+    },
+    "id": {
+      "$numberInt": "82"
+    },
+    "code": {
+      "$numberInt": "135766"
+    },
+    "product": "COCA-COLA ZERO 10 OZ  (12)  (Ch",
+    "shelves": {
+      "$numberInt": "208"
+    },
+    "floors": {
+      "$numberInt": "26"
+    },
+    "packs": {
+      "$numberInt": "12"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "690992a5c2e5a04ea35348eb"
+    },
+    "id": {
+      "$numberInt": "83"
+    },
+    "code": {
+      "$numberInt": "56498"
+    },
+    "product": "SCHWEPPES SODA 10OZ VNR(12)NvaB",
+    "shelves": {
+      "$numberInt": "176"
+    },
+    "floors": {
+      "$numberInt": "22"
+    },
+    "packs": {
+      "$numberInt": "12"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "690992a5c2e5a04ea35348ec"
+    },
+    "id": {
+      "$numberInt": "84"
+    },
+    "code": {
+      "$numberInt": "56490"
+    },
+    "product": "SCHWEPPES TONICA 10OZ VNR (12)",
+    "shelves": {
+      "$numberInt": "176"
+    },
+    "floors": {
+      "$numberInt": "22"
+    },
+    "packs": {
+      "$numberInt": "12"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "690992a5c2e5a04ea35348ed"
+    },
+    "id": {
+      "$numberInt": "85"
+    },
+    "code": {
+      "$numberInt": "160192"
+    },
+    "product": "COCA COLA 10 OZ VNR (12) SPMKS",
+    "shelves": {
+      "$numberInt": "208"
+    },
+    "floors": {
+      "$numberInt": "26"
+    },
+    "packs": {
+      "$numberInt": "12"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "690992a5c2e5a04ea35348ee"
+    },
+    "id": {
+      "$numberInt": "86"
+    },
+    "code": {
+      "$numberInt": "160121"
+    },
+    "product": "POWERADE ION4 FT 500ML PET(6)",
+    "shelves": {
+      "$numberInt": "350"
+    },
+    "floors": {
+      "$numberInt": "50"
+    },
+    "packs": {
+      "$numberInt": "6"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "690992a5c2e5a04ea35348ef"
+    },
+    "id": {
+      "$numberInt": "87"
+    },
+    "code": {
+      "$numberInt": "160122"
+    },
+    "product": "POWERADE ION4 MB 500ML PET(6)",
+    "shelves": {
+      "$numberInt": "350"
+    },
+    "floors": {
+      "$numberInt": "50"
+    },
+    "packs": {
+      "$numberInt": "6"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "690992a5c2e5a04ea35348f0"
+    },
+    "id": {
+      "$numberInt": "88"
+    },
+    "code": {
+      "$numberInt": "160054"
+    },
+    "product": "COCA-COLA 17,7LT BIB",
+    "shelves": {
+      "$numberInt": "10"
+    },
+    "floors": {
+      "$numberInt": "10"
+    },
+    "packs": {
+      "$numberInt": "1"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "690992a5c2e5a04ea35348f1"
+    },
+    "id": {
+      "$numberInt": "89"
+    },
+    "code": {
+      "$numberInt": "135762"
+    },
+    "product": "COCA COLA ZERO 5 LT BIB",
+    "shelves": {
+      "$numberInt": "30"
+    },
+    "floors": {
+      "$numberInt": "30"
+    },
+    "packs": {
+      "$numberInt": "1"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "690992a5c2e5a04ea35348f2"
+    },
+    "id": {
+      "$numberInt": "90"
+    },
+    "code": {
+      "$numberInt": "160063"
+    },
+    "product": "QUATRO TJ 5LT BIB",
+    "shelves": {
+      "$numberInt": "30"
+    },
+    "floors": {
+      "$numberInt": "30"
+    },
+    "packs": {
+      "$numberInt": "1"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "690992a5c2e5a04ea35348f3"
+    },
+    "id": {
+      "$numberInt": "91"
+    },
+    "code": {
+      "$numberInt": "160014"
+    },
+    "product": "SPRITE LL 5LT BIB",
+    "shelves": {
+      "$numberInt": "30"
+    },
+    "floors": {
+      "$numberInt": "30"
+    },
+    "packs": {
+      "$numberInt": "1"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "690992a5c2e5a04ea35348f4"
+    },
+    "id": {
+      "$numberInt": "92"
+    },
+    "code": {
+      "$numberInt": "160145"
+    },
+    "product": "PREMIO ROJO BIB 5L",
+    "shelves": {
+      "$numberInt": "30"
+    },
+    "floors": {
+      "$numberInt": "30"
+    },
+    "packs": {
+      "$numberInt": "1"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "690992a5c2e5a04ea35348f5"
+    },
+    "id": {
+      "$numberInt": "93"
+    },
+    "code": {
+      "$numberInt": "136204"
+    },
+    "product": "GAS CARBONICO",
+    "shelves": {
+      "$numberInt": "8"
+    },
+    "floors": {
+      "$numberInt": "1"
+    },
+    "packs": {
+      "$numberInt": "1"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "690992a5c2e5a04ea35348f6"
+    },
+    "id": {
+      "$numberInt": "94"
+    },
+    "code": {
+      "$numberInt": "92764"
+    },
+    "product": "MANANTIAL SIN GAS 500 ML",
+    "shelves": {
+      "$numberInt": "96"
+    },
+    "floors": {
+      "$numberInt": "16"
+    },
+    "packs": {
+      "$numberInt": "12"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "690992a5c2e5a04ea35348f7"
+    },
+    "id": {
+      "$numberInt": "95"
+    },
+    "code": {
+      "$numberInt": "160133"
+    },
+    "product": "MANANTIAL  GAS 300 ML VNR(12)",
+    "shelves": {
+      "$numberInt": "26"
+    },
+    "floors": {
+      "$numberInt": "26"
+    },
+    "packs": {
+      "$numberInt": "12"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "690992a5c2e5a04ea35348f8"
+    },
+    "id": {
+      "$numberInt": "96"
+    },
+    "code": {
+      "$numberInt": "160240"
+    },
+    "product": "MANANTIAL GAS 600 ML (24)",
+    "shelves": {
+      "$numberInt": "132"
+    },
+    "floors": {
+      "$numberInt": "22"
+    },
+    "packs": {
+      "$numberInt": "12"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "690992a5c2e5a04ea35348f9"
+    },
+    "id": {
+      "$numberInt": "97"
+    },
+    "code": {
+      "$numberInt": "160241"
+    },
+    "product": "MANANTIAL 600 ML (12)",
+    "shelves": {
+      "$numberInt": "132"
+    },
+    "floors": {
+      "$numberInt": "22"
+    },
+    "packs": {
+      "$numberInt": "12"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "690992a5c2e5a04ea35348fa"
+    },
+    "id": {
+      "$numberInt": "98"
+    },
+    "code": {
+      "$numberInt": "160060"
+    },
+    "product": "MANANTIAL 1,5 PET (9)",
+    "shelves": {
+      "$numberInt": "80"
+    },
+    "floors": {
+      "$numberInt": "16"
+    },
+    "packs": {
+      "$numberInt": "9"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "690992a5c2e5a04ea35348fb"
+    },
+    "id": {
+      "$numberInt": "99"
+    },
+    "code": {
+      "$numberInt": "160168"
+    },
+    "product": "AGUA BRISA PET 280 ML (24)",
+    "shelves": {
+      "$numberInt": "160"
+    },
+    "floors": {
+      "$numberInt": "16"
+    },
+    "packs": {
+      "$numberInt": "24"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "690992a5c2e5a04ea35348fc"
+    },
+    "id": {
+      "$numberInt": "100"
+    },
+    "code": {
+      "$numberInt": "160169"
+    },
+    "product": "AGUA BRISA GAS PET 280 ML (24)",
+    "shelves": {
+      "$numberInt": "160"
+    },
+    "floors": {
+      "$numberInt": "16"
+    },
+    "packs": {
+      "$numberInt": "24"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "690992a5c2e5a04ea35348fd"
+    },
+    "id": {
+      "$numberInt": "101"
+    },
+    "code": {
+      "$numberInt": "160170"
+    },
+    "product": "AGUA BRISA GAS LIMA LIMON PET 280 ML (24)",
+    "shelves": {
+      "$numberInt": "160"
+    },
+    "floors": {
+      "$numberInt": "16"
+    },
+    "packs": {
+      "$numberInt": "24"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "690992a5c2e5a04ea35348fe"
+    },
+    "id": {
+      "$numberInt": "102"
+    },
+    "code": {
+      "$numberInt": "92768"
+    },
+    "product": "AGUA BRISA GAS MANZANA PET 280 ML (24)",
+    "shelves": {
+      "$numberInt": "160"
+    },
+    "floors": {
+      "$numberInt": "16"
+    },
+    "packs": {
+      "$numberInt": "24"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "690992a5c2e5a04ea35348ff"
+    },
+    "id": {
+      "$numberInt": "103"
+    },
+    "code": {
+      "$numberInt": "92793"
+    },
+    "product": "AGUA BRISA GAS MARACUYA  PET 280 ML (24)",
+    "shelves": {
+      "$numberInt": "160"
+    },
+    "floors": {
+      "$numberInt": "16"
+    },
+    "packs": {
+      "$numberInt": "24"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "690992a5c2e5a04ea3534900"
+    },
+    "id": {
+      "$numberInt": "104"
+    },
+    "code": {
+      "$numberInt": "160151"
+    },
+    "product": "AGUA BRISA BIDON 6 LT (2)",
+    "shelves": {
+      "$numberInt": "63"
+    },
+    "floors": {
+      "$numberInt": "21"
+    },
+    "packs": {
+      "$numberInt": "2"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "690992a5c2e5a04ea3534901"
+    },
+    "id": {
+      "$numberInt": "105"
+    },
+    "code": {
+      "$numberInt": "160047"
+    },
+    "product": "AGUA BRISA PET 600ML (24)",
+    "shelves": {
+      "$numberInt": "84"
+    },
+    "floors": {
+      "$numberInt": "12"
+    },
+    "packs": {
+      "$numberInt": "24"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "690992a5c2e5a04ea3534902"
+    },
+    "id": {
+      "$numberInt": "106"
+    },
+    "code": {
+      "$numberInt": "160046"
+    },
+    "product": "AGUA BRISA GAS PET 600ML (24)",
+    "shelves": {
+      "$numberInt": "84"
+    },
+    "floors": {
+      "$numberInt": "12"
+    },
+    "packs": {
+      "$numberInt": "24"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "690992a5c2e5a04ea3534903"
+    },
+    "id": {
+      "$numberInt": "107"
+    },
+    "code": {
+      "$numberInt": "92740"
+    },
+    "product": "BRISA LIMA LIMON 1.5 L PET (12)",
+    "shelves": {
+      "$numberInt": "65"
+    },
+    "floors": {
+      "$numberInt": "13"
+    },
+    "packs": {
+      "$numberInt": "12"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "690992a5c2e5a04ea3534904"
+    },
+    "id": {
+      "$numberInt": "108"
+    },
+    "code": {
+      "$numberInt": "92770"
+    },
+    "product": "BRISA MANZANA 1.5 L",
+    "shelves": {
+      "$numberInt": "65"
+    },
+    "floors": {
+      "$numberInt": "13"
+    },
+    "packs": {
+      "$numberInt": "12"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "690992a5c2e5a04ea3534905"
+    },
+    "id": {
+      "$numberInt": "109"
+    },
+    "code": {
+      "$numberInt": "92795"
+    },
+    "product": "BRISA MARACUYA PET 1,5LT (12)",
+    "shelves": {
+      "$numberInt": "65"
+    },
+    "floors": {
+      "$numberInt": "13"
+    },
+    "packs": {
+      "$numberInt": "12"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "690992a5c2e5a04ea3534906"
+    },
+    "id": {
+      "$numberInt": "110"
+    },
+    "code": {
+      "$numberInt": "92794"
+    },
+    "product": "BRISA MARACUYA PET 600ML (6)",
+    "shelves": {
+      "$numberInt": "336"
+    },
+    "floors": {
+      "$numberInt": "48"
+    },
+    "packs": {
+      "$numberInt": "6"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "690992a5c2e5a04ea3534907"
+    },
+    "id": {
+      "$numberInt": "111"
+    },
+    "code": {
+      "$numberInt": "92736"
+    },
+    "product": "BRISA LIMA LIMON 600 ML (6)",
+    "shelves": {
+      "$numberInt": "336"
+    },
+    "floors": {
+      "$numberInt": "48"
+    },
+    "packs": {
+      "$numberInt": "6"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "690992a5c2e5a04ea3534908"
+    },
+    "id": {
+      "$numberInt": "112"
+    },
+    "code": {
+      "$numberInt": "92769"
+    },
+    "product": "BRISA MANZANA 600 ML(6)",
+    "shelves": {
+      "$numberInt": "336"
+    },
+    "floors": {
+      "$numberInt": "48"
+    },
+    "packs": {
+      "$numberInt": "6"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "690992a5c2e5a04ea3534909"
+    },
+    "id": {
+      "$numberInt": "113"
+    },
+    "code": {
+      "$numberInt": "160008"
+    },
+    "product": "BRISA ECOFLEX",
+    "shelves": {
+      "$numberInt": "168"
+    },
+    "floors": {
+      "$numberInt": "28"
+    },
+    "packs": {
+      "$numberInt": "6"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "690992a5c2e5a04ea353490a"
+    },
+    "id": {
+      "$numberInt": "114"
+    },
+    "code": {
+      "$numberInt": "92757"
+    },
+    "product": "BRISA SIN GAS 3 LT (6)",
+    "shelves": {
+      "$numberInt": "60"
+    },
+    "floors": {
+      "$numberInt": "15"
+    },
+    "packs": {
+      "$numberInt": "6"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "690992a5c2e5a04ea353490b"
+    },
+    "id": {
+      "$numberInt": "115"
+    },
+    "code": {
+      "$numberInt": "92760"
+    },
+    "product": "2 PK BRISASIN GAS 3 L",
+    "shelves": {
+      "$numberInt": "180"
+    },
+    "floors": {
+      "$numberInt": "45"
+    },
+    "packs": {
+      "$numberInt": "2"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "690992a5c2e5a04ea353490c"
+    },
+    "id": {
+      "$numberInt": "116"
+    },
+    "code": {
+      "$numberInt": "160048"
+    },
+    "product": "AGUA BRISA BOTELLON 5 GL TAPA VALVULA",
+    "shelves": {
+      "$numberInt": "16"
+    },
+    "floors": {
+      "$numberInt": "16"
+    },
+    "packs": {
+      "$numberInt": "1"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "690992a5c2e5a04ea353490d"
+    },
+    "id": {
+      "$numberInt": "117"
+    },
+    "code": {
+      "$numberInt": "135676"
+    },
+    "product": "COMBO AHORRO CCSO 2.5 LT",
+    "shelves": {
+      "$numberInt": "180"
+    },
+    "floors": {
+      "$numberInt": "45"
+    },
+    "packs": {
+      "$numberInt": "2"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "690992a5c2e5a04ea353490e"
+    },
+    "id": {
+      "$numberInt": "118"
+    },
+    "code": {
+      "$numberInt": "92787"
+    },
+    "product": "2 PK BRISA MANZANA 1.5L",
+    "shelves": {
+      "$numberInt": "260"
+    },
+    "floors": {
+      "$numberInt": "65"
+    },
+    "packs": {
+      "$numberInt": "2"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "690992a5c2e5a04ea353490f"
+    },
+    "id": {
+      "$numberInt": "119"
+    },
+    "code": {
+      "$numberInt": "135772"
+    },
+    "product": "2 PK CCSA 1.5 LT",
+    "shelves": {
+      "$numberInt": "260"
+    },
+    "floors": {
+      "$numberInt": "65"
+    },
+    "packs": {
+      "$numberInt": "2"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "690992a5c2e5a04ea3534910"
+    },
+    "id": {
+      "$numberInt": "120"
+    },
+    "code": {
+      "$numberInt": "135685"
+    },
+    "product": "2 PC CCSO 1.5LT",
+    "shelves": {
+      "$numberInt": "260"
+    },
+    "floors": {
+      "$numberInt": "65"
+    },
+    "packs": {
+      "$numberInt": "2"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "690992a5c2e5a04ea3534911"
+    },
+    "id": {
+      "$numberInt": "121"
+    },
+    "code": {
+      "$numberInt": "120120"
+    },
+    "product": "2 PK FRESH CITRUS 2.5 L",
+    "shelves": {
+      "$numberInt": "135"
+    },
+    "floors": {
+      "$numberInt": "45"
+    },
+    "packs": {
+      "$numberInt": "2"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "690992a5c2e5a04ea3534912"
+    },
+    "id": {
+      "$numberInt": "122"
+    },
+    "code": {
+      "$numberInt": "120073"
+    },
+    "product": "6 PK (3CT+3MD) 200ML",
+    "shelves": {
+      "$numberInt": "756"
+    },
+    "floors": {
+      "$numberInt": "84"
+    },
+    "packs": {
+      "$numberInt": "6"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "690992a5c2e5a04ea3534913"
+    },
+    "id": {
+      "$numberInt": "123"
+    },
+    "code": {
+      "$numberInt": "136247"
+    },
+    "product": "2 PK (1CCSO 3LT + 1 QT3LT) Nvo",
+    "shelves": {
+      "$numberInt": "180"
+    },
+    "floors": {
+      "$numberInt": "45"
+    },
+    "packs": {
+      "$numberInt": "2"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "690992a5c2e5a04ea3534914"
+    },
+    "id": {
+      "$numberInt": "124"
+    },
+    "code": {
+      "$numberInt": "120196"
+    },
+    "product": "3 PACK POWER SURT (NM + MB+ FT)",
+    "shelves": {
+      "$numberInt": "540"
+    },
+    "floors": {
+      "$numberInt": "90"
+    },
+    "packs": {
+      "$numberInt": "3"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "690992a5c2e5a04ea3534915"
+    },
+    "id": {
+      "$numberInt": "125"
+    },
+    "code": {
+      "$numberInt": "120010"
+    },
+    "product": "6 PACK POWER SURT (NM + MB+ FT)",
+    "shelves": {
+      "$numberInt": "350"
+    },
+    "floors": {
+      "$numberInt": "50"
+    },
+    "packs": {
+      "$numberInt": "1"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "690992a5c2e5a04ea3534916"
+    },
+    "id": {
+      "$numberInt": "126"
+    },
+    "code": {
+      "$numberInt": "135770"
+    },
+    "product": "2 PACK C.C 2,5 ZERO LTS",
+    "shelves": {
+      "$numberInt": "180"
+    },
+    "floors": {
+      "$numberInt": "45"
+    },
+    "packs": {
+      "$numberInt": "2"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "690992a5c2e5a04ea3534917"
+    },
+    "id": {
+      "$numberInt": "127"
+    },
+    "code": {
+      "$numberInt": "135678"
+    },
+    "product": "2 PK (CCSO 3LT + SP 3LT ) Nvo",
+    "shelves": {
+      "$numberInt": "180"
+    },
+    "floors": {
+      "$numberInt": "45"
+    },
+    "packs": {
+      "$numberInt": "2"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "690992a5c2e5a04ea3534918"
+    },
+    "id": {
+      "$numberInt": "128"
+    },
+    "code": {
+      "$numberInt": "160201"
+    },
+    "product": "6PACK CCR 250ML MINI PET",
+    "shelves": {
+      "$numberInt": "0"
+    },
+    "floors": {
+      "$numberInt": "66"
+    },
+    "packs": {
+      "$numberInt": "6"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "690992a5c2e5a04ea3534919"
+    },
+    "id": {
+      "$numberInt": "129"
+    },
+    "code": {
+      "$numberInt": "136402"
+    },
+    "product": "6 PACK CC 269 lata",
+    "shelves": {
+      "$numberInt": "1"
+    },
+    "floors": {
+      "$numberInt": "56"
+    },
+    "packs": {
+      "$numberInt": "1"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "690992a5c2e5a04ea353491a"
+    },
+    "id": {
+      "$numberInt": "130"
+    },
+    "code": {
+      "$numberInt": "135675"
+    },
+    "product": "COMBO AHORRO CCSO 3LT",
+    "shelves": {
+      "$numberInt": "180"
+    },
+    "floors": {
+      "$numberInt": "45"
+    },
+    "packs": {
+      "$numberInt": "1"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "690992a5c2e5a04ea353491b"
+    },
+    "id": {
+      "$numberInt": "131"
+    },
+    "code": {
+      "$numberInt": "160212"
+    },
+    "product": "6 PACK BRISA 600PET",
+    "shelves": {
+      "$numberInt": "0"
+    },
+    "floors": {
+      "$numberInt": "0"
+    },
+    "packs": {
+      "$numberInt": "6"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "690992a5c2e5a04ea353491c"
+    },
+    "id": {
+      "$numberInt": "132"
+    },
+    "code": {
+      "$numberInt": "160289"
+    },
+    "product": "6 PACK BRISA 280 PET",
+    "shelves": {
+      "$numberInt": "0"
+    },
+    "floors": {
+      "$numberInt": "0"
+    },
+    "packs": {
+      "$numberInt": "6"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "690992a5c2e5a04ea353491d"
+    },
+    "id": {
+      "$numberInt": "133"
+    },
+    "code": {
+      "$numberInt": "92881"
+    },
+    "product": "6 PACK BRISA SURTIDA",
+    "shelves": {
+      "$numberInt": "0"
+    },
+    "floors": {
+      "$numberInt": "0"
+    },
+    "packs": {
+      "$numberInt": "6"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "690992a5c2e5a04ea353491e"
+    },
+    "id": {
+      "$numberInt": "134"
+    },
+    "code": {
+      "$numberInt": "92809"
+    },
+    "product": "6PK BRISA ECOFLEX 1 LITRO",
+    "shelves": {
+      "$numberInt": "0"
+    },
+    "floors": {
+      "$numberInt": "0"
+    },
+    "packs": {
+      "$numberInt": "6"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "690992a5c2e5a04ea353491f"
+    },
+    "id": {
+      "$numberInt": "135"
+    },
+    "code": {
+      "$numberInt": "120148"
+    },
+    "product": "12PK(3MG+2MRA+2MFR+2PÑM+2DZ+1MZ)CAJ",
+    "shelves": {
+      "$numberInt": "378"
+    },
+    "floors": {
+      "$numberInt": "42"
+    },
+    "packs": {
+      "$numberInt": "12"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "690992a5c2e5a04ea3534920"
+    },
+    "id": {
+      "$numberInt": "136"
+    },
+    "code": {
+      "$numberInt": "120194"
+    },
+    "product": "6PK(2MG+2MRA+1MFR+1PÑM)200MLTRP CAJ",
+    "shelves": {
+      "$numberInt": "756"
+    },
+    "floors": {
+      "$numberInt": "84"
+    },
+    "packs": {
+      "$numberInt": "6"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "690992a5c2e5a04ea3534921"
+    },
+    "id": {
+      "$numberInt": "137"
+    },
+    "code": {
+      "$numberInt": "120102"
+    },
+    "product": "12 PK (4MG+2PÑ+4MRA+2MFR) 500ML PET",
+    "shelves": {
+      "$numberInt": "378"
+    },
+    "floors": {
+      "$numberInt": "42"
+    },
+    "packs": {
+      "$numberInt": "12"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "690992a5c2e5a04ea3534922"
+    },
+    "id": {
+      "$numberInt": "138"
+    },
+    "code": {
+      "$numberInt": "120161"
+    },
+    "product": "6PK (3CT+3MD) 188ML NVO TRP",
+    "shelves": {
+      "$numberInt": "756"
+    },
+    "floors": {
+      "$numberInt": "87"
+    },
+    "packs": {
+      "$numberInt": "6"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "690992a5c2e5a04ea3534923"
+    },
+    "id": {
+      "$numberInt": "139"
+    },
+    "code": {
+      "$numberInt": "120131"
+    },
+    "product": "DV FRUTAL MANGO 500 ML PET (6)",
+    "shelves": {
+      "$numberInt": "424"
+    },
+    "floors": {
+      "$numberInt": "53"
+    },
+    "packs": {
+      "$numberInt": "6"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "690992a5c2e5a04ea3534924"
+    },
+    "id": {
+      "$numberInt": "140"
+    },
+    "code": {
+      "$numberInt": "120129"
+    },
+    "product": "DV FRUTAL MORA 500 ML PET (6)",
+    "shelves": {
+      "$numberInt": "424"
+    },
+    "floors": {
+      "$numberInt": "53"
+    },
+    "packs": {
+      "$numberInt": "6"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "690992a5c2e5a04ea3534925"
+    },
+    "id": {
+      "$numberInt": "141"
+    },
+    "code": {
+      "$numberInt": "120132"
+    },
+    "product": "DV FRUTAL MANDARINA - PIÑA.",
+    "shelves": {
+      "$numberInt": "424"
+    },
+    "floors": {
+      "$numberInt": "53"
+    },
+    "packs": {
+      "$numberInt": "6"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "690992a5c2e5a04ea3534926"
+    },
+    "id": {
+      "$numberInt": "142"
+    },
+    "code": {
+      "$numberInt": "120128"
+    },
+    "product": "FRUTAL MANGOFRS 500 ML",
+    "shelves": {
+      "$numberInt": "424"
+    },
+    "floors": {
+      "$numberInt": "53"
+    },
+    "packs": {
+      "$numberInt": "6"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "690992a5c2e5a04ea3534927"
+    },
+    "id": {
+      "$numberInt": "143"
+    },
+    "code": {
+      "$numberInt": "120130"
+    },
+    "product": "FRUTAL SALPICON 500 ML PET",
+    "shelves": {
+      "$numberInt": "424"
+    },
+    "floors": {
+      "$numberInt": "53"
+    },
+    "packs": {
+      "$numberInt": "6"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "690992a5c2e5a04ea3534928"
+    },
+    "id": {
+      "$numberInt": "144"
+    },
+    "code": {
+      "$numberInt": "136399"
+    },
+    "product": "COCA COLA ORIGINAL 269ML LAT(12)",
+    "shelves": {
+      "$numberInt": "0"
+    },
+    "floors": {
+      "$numberInt": "26"
+    },
+    "packs": {
+      "$numberInt": "12"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "690992a5c2e5a04ea3534929"
+    },
+    "id": {
+      "$numberInt": "145"
+    },
+    "code": {
+      "$numberInt": "135767"
+    },
+    "product": "COCA COLA SIN AZUCAR 330 ML LATA ADV",
+    "shelves": {
+      "$numberInt": "308"
+    },
+    "floors": {
+      "$numberInt": "22"
+    },
+    "packs": {
+      "$numberInt": "12"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "690992a5c2e5a04ea353492a"
+    },
+    "id": {
+      "$numberInt": "146"
+    },
+    "code": {
+      "$numberInt": "160029"
+    },
+    "product": "COCA-COLA 330ML LATA (12)",
+    "shelves": {
+      "$numberInt": "308"
+    },
+    "floors": {
+      "$numberInt": "22"
+    },
+    "packs": {
+      "$numberInt": "12"
+    }
+  }
+]

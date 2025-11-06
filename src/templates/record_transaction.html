@@ -1,0 +1,280 @@
+{% extends "base.html" %}
+
+{% block title %}Registrar transacción — Flask Inventory{% endblock %}
+
+{% block content %}
+  <div class="card">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
+      <div>
+        <h2 style="margin:0 0 6px 0;">Registrar transacción</h2>
+        <div class="small">Introduce los datos de la transacción</div>
+      </div>
+      <div class="controls">
+        <a class="btn secondary" href="{{ url_for('transactions_view') }}">Volver a transacciones</a>
+      </div>
+    </div>
+
+    <form method="post" novalidate id="tx-form">
+      {{ form.hidden_tag() }}
+
+      <div class="form-row">
+        <div class="field">{{ form.id.label }}{{ form.id() }}</div>
+        <div class="field">
+          <label>Fecha (Colombia)</label>
+          <input type="text"
+                 value="{{ colombia_now.strftime('%Y-%m-%d %H:%M:%S') }}"
+                 readonly aria-readonly="true"
+                 style="background:#f3f4f6;border-radius:6px;padding:8px;border:1px solid rgba(15,23,42,0.06);">
+          <input type="hidden" name="{{ form.date.name }}" value="{{ colombia_now.date().isoformat() }}">
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="field" style="flex:1 1 40%;">
+          <label for="product_search" class="small">Buscar producto</label>
+          <input id="product_search" type="text" placeholder="Buscar por nombre o código..." style="padding:8px;border-radius:8px;border:1px solid rgba(15,23,42,0.06);margin-bottom:6px;width:90%;">
+          <label for="{{ form.product.id }}">Producto</label>
+          {% if inventory_options %}
+            <select name="{{ form.product.name }}" id="{{ form.product.id }}" size="6" style="width:100%;padding:6px;border-radius:6px;border:1px solid rgba(15,23,42,0.06);">
+              <option value="">-- Seleccionar producto --</option>
+              {% for opt in inventory_options %}
+                <option
+                  value="{{ opt.value }}"
+                  data-shelves="{{ opt.shelves }}"
+                  data-floors="{{ opt.floors }}"
+                  data-packs="{{ opt.packs }}"
+                  data-code="{{ opt.code }}"
+                  data-product-name="{{ opt.product_name }}"
+                  {% if form.product.data==opt.value %}selected{% endif %}>
+                  {{ opt.label }}
+                </option>
+              {% endfor %}
+            </select>
+
+            <div style="display:flex;gap:8px;margin-top:8px;align-items:center;">
+              <div style="flex:1">
+                <label class="small">Código (auto)</label>
+                <input id="codigo_display" type="text" readonly style="width:90%;padding:8px;border-radius:6px;border:1px solid rgba(15,23,42,0.06);background:#f8fafc;">
+                <!-- hidden field to submit codigo -->
+                <input type="hidden" name="codigo" id="codigo_hidden">
+              </div>
+            </div>
+
+          {% else %}
+            {{ form.product() }}
+          {% endif %}
+        </div>
+
+        <div class="field" style="flex:1 1 35%;">
+          <label class="small">Cantidades temporales (para cálculo)</label>
+          <div class="form-row" style="margin-top:6px;">
+            <div class="field">
+              <label class="small">Shelves</label>
+              <input id="temp_shelves" name="temp_shelves" type="number" min="0" step="1" value="0">
+            </div>
+            <div class="field">
+              <label class="small">Floors</label>
+              <input id="temp_floors" name="temp_floors" type="number" min="0" step="1" value="0">
+            </div>
+            <div class="field">
+              <label class="small">Packs</label>
+              <!-- packs se multiplica por el campo 'packs' del inventario -->
+              <input id="temp_packs" name="temp_packs" type="number" min="0" step="1" value="0">
+            </div>
+            <div class="field">
+              <label class="small">Cajas (decimal)</label>
+              <!-- cajas se SUMAN directamente, no tienen multiplicador -->
+              <input id="temp_cajas" name="temp_cajas" type="number" min="0" step="1" value="0">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-row" style="align-items:center;">
+        <div class="field">
+          <label for="{{ form.total.id }}">Total (calculado)</label>
+          {{ form.total(readonly=True) }}
+        </div>
+        <div class="field small muted">El total se calcula multiplicando los valores temporales por los campos correspondientes del producto en inventario.</div>
+      </div>     
+
+      <div class="actions" style="margin-top:10px;">
+        <button class="btn" type="submit">Registrar</button>
+        <a class="btn secondary" href="{{ url_for('transactions_view') }}">Cancelar</a>
+      </div>
+    </form>
+  </div>
+
+  <!-- include SweetAlert2 (toast style) -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+  <script>
+    (function(){
+      const select = document.getElementById('{{ form.product.id }}');
+      const search = document.getElementById('product_search');
+      const custom = document.getElementById('product_custom');
+      const codigoDisplay = document.getElementById('codigo_display');
+      const codigoHidden = document.getElementById('codigo_hidden');
+      const codigoCustom = document.getElementById('codigo_custom');
+      const inpShelves = document.getElementById('temp_shelves');
+      const inpFloors = document.getElementById('temp_floors');
+      const inpPacks = document.getElementById('temp_packs');
+      const inpCajas = document.getElementById('temp_cajas'); // nuevo
+      const totalField = document.getElementsByName('{{ form.total.name }}')[0];
+
+      function parseNum(v){ const n = parseFloat(v); return isNaN(n) ? 0 : n; }
+
+      function computeTotal(){
+        let ms = 1, mf = 1, mp = 1;
+        if (select && select.value){
+          const opt = select.options[select.selectedIndex];
+          ms = parseNum(opt.dataset.shelves);
+          mf = parseNum(opt.dataset.floors);
+          mp = parseNum(opt.dataset.packs);
+        }
+        const ts = parseNum(inpShelves.value);
+        const tf = parseNum(inpFloors.value);
+        const tp = parseNum(inpPacks.value);
+        const tc = parseNum(inpCajas.value); // cajas sumadas directamente
+        const total = (ts * ms) + (tf * mf) + (tp) + tc/mp;
+        if (totalField) totalField.value = total;
+      }
+
+      // actualizar codigo cuando cambia la selección
+      function updateCodigoFromSelect(){
+        if (!select) return;
+        const opt = select.options[select.selectedIndex];
+        if (opt && opt.dataset){
+          const code = opt.dataset.code || '';
+          codigoDisplay.value = code;
+          codigoHidden.value = code;
+        } else {
+          codigoDisplay.value = '';
+          codigoHidden.value = '';
+        }
+      }
+
+      // filtro simple para el select
+      function filterOptions(){
+        const q = search.value.trim().toLowerCase();
+        for (let i=0;i<select.options.length;i++){
+          const opt = select.options[i];
+          // no ocultar la primera vacía
+          if (i===0){ opt.hidden = false; continue; }
+          const text = (opt.text || '').toLowerCase();
+          const code = (opt.dataset.code || '').toLowerCase();
+          opt.hidden = q ? !(text.includes(q) || code.includes(q)) : false;
+        }
+      }
+
+
+      // eventos
+      if (select){
+        select.addEventListener('change', function(){
+          updateCodigoFromSelect();
+          computeTotal();
+
+          // Mostrar alerta menos invasiva con SweetAlert2 (toast)
+          try {
+            const opt = select.options[select.selectedIndex];
+            const pname = (opt && opt.dataset) ? (opt.dataset.productName || opt.text) : '';
+
+            // Si hay id seleccionado, pedir datos adicionales al servidor y mostrarlos en el toast
+            const selId = select.value;
+            if (selId) {
+              fetch(`/api/inventory/${encodeURIComponent(selId)}`)
+                .then(resp => resp.json())
+                .then(data => {
+                  if (data && !data.error) {
+                    const code = data.code || '';
+                    //const packs = (typeof data.packs !== 'undefined') ? data.packs : '';
+                    //const extra = `${code ? 'Código: ' + code : ''}${(code && packs) ? ' — ' : ''}${packs ? 'Packs: ' + packs : ''}`;
+                    const suma = (typeof data.transactions_today_sum !== 'undefined') ? data.transactions_today_sum : '0';
+                    Swal.fire({
+                      toast: true,
+                      position: 'top-end',
+                      icon: 'info',
+                      title: 'Producto seleccionado',
+                      text: `${pname}${suma ? ' — ' + '**' + suma + '**' + ' unidades transaccionadas hoy' : ' — Ninguna unidad transaccionada hoy'} `,
+                      showConfirmButton: false,
+                      timer: 6000,
+                      timerProgressBar: true
+                    });
+                  } else {
+                    Swal.fire({
+                      toast: true,
+                      position: 'top-end',
+                      icon: 'info',
+                      title: 'Producto seleccionado',
+                      text: pname,
+                      showConfirmButton: false,
+                      timer: 2000,
+                      timerProgressBar: true
+                    });
+                  }
+                })
+                .catch(err => {
+                  console.error('Fetch inventory error', err);
+                  Swal.fire({
+                    toast: true,
+                    position: 'top-end',
+                    icon: 'info',
+                    title: 'Producto seleccionado',
+                    text: pname,
+                    showConfirmButton: false,
+                    timer: 2000,
+                    timerProgressBar: true
+                  });
+                });
+            } else {
+              Swal.fire({
+                toast: true,
+                position: 'top-end',
+                icon: 'info',
+                title: 'Producto seleccionado',
+                text: pname,
+                showConfirmButton: false,
+                timer: 2000,
+                timerProgressBar: true
+              });
+            }
+          } catch (err) {
+            console.error('Error mostrando alerta de producto:', err);
+          }
+        });
+      }
+      [inpShelves, inpFloors, inpPacks, inpCajas].forEach(el=>{
+        if (!el) return;
+        el.addEventListener('input', computeTotal);
+        el.addEventListener('change', computeTotal);
+      });
+      if (search){
+        search.addEventListener('input', filterOptions);
+      }
+
+      // submit: si hay nombre manual prevalece y código manual también
+      const formEl = document.getElementById('tx-form');
+      formEl.addEventListener('submit', function(){
+        if (custom && custom.value.trim().length > 0){
+          let hidden = formEl.querySelector('input[name="{{ form.product.name }}"]');
+          if (!hidden){
+            hidden = document.createElement('input');
+            hidden.type = 'hidden';
+            hidden.name = "{{ form.product.name }}";
+            formEl.appendChild(hidden);
+          }
+          hidden.value = custom.value.trim();
+          if (select) select.disabled = true;
+        }
+        // if user entered manual code, ensure it's in hidden field
+        if (codigoCustom && codigoCustom.value.trim().length>0){
+          codigoHidden.value = codigoCustom.value.trim();
+        }
+      });
+
+      // init
+      updateCodigoFromSelect();
+      computeTotal();
+    })();
+  </script>
+{% endblock %}
