@@ -577,16 +577,15 @@ def edit_transaction(id):
 def download_report():
     """
     Carga una plantilla Excel (xlsx) desde la carpeta 'excel_templates' y la rellena con:
-      - hoja "Transactions": filas con fields [_id, id, date, product, total]
-      - hoja "Inventory": filas con fields [_id, id, code, product, shelves, floors, packs]
-    Ajusta las hojas/nombres/columnas abajo según la plantilla que entregues.
-    Parámetros opcionales:
-      ?template=mi_plantilla.xlsx  (archivo en src/excel_templates/)
+      - Columna código ya existente en la hoja 'Datos'
+      - Rellena la columna 'total' según los datos traídos desde la BD.
     """
-    # template filename desde query (fallback a 'INVENTARIO_PISO.xlsx')
-    template_name = request.args.get('template', 'INVENTARIO_PISO.xlsx')
-    # ruta dentro del proyecto: crea la carpeta src/excel_templates y sube tus plantillas ahí
-    import os
+    import os, io, datetime
+    from flask import send_file, request
+    from openpyxl import load_workbook
+
+    # template filename desde query (fallback)
+    template_name = request.args.get('template', 'Copia_INVENTARIO_PISO.xlsx')
     base_dir = os.path.dirname(__file__)
     tpl_dir = os.path.join(base_dir, 'excel_templates')
     tpl_path = os.path.join(tpl_dir, template_name)
@@ -594,7 +593,7 @@ def download_report():
     if not os.path.isfile(tpl_path):
         return f"Template not found: {tpl_path}", 404
 
-    # obtener datos desde modelos o directamente desde la BD
+    # obtener datos desde modelos o BD
     try:
         if 'find_transactions' in globals() and callable(find_transactions):
             tx_docs = find_transactions(aggregate_by_product=True, group_by_code=True)
@@ -603,47 +602,75 @@ def download_report():
             db = get_database()
             tx_docs = list(db.transactions.find().limit(1000))
     except Exception as e:
-        tx_docs = []
         print("Error loading transactions:", e)
+        tx_docs = []
 
-    # cargar plantilla y escribir datos
-    wb = load_workbook(tpl_path)
-    # HOJA: Datos (ajusta nombre)
-    if 'Datos' in wb.sheetnames:
-        ws = wb['Datos']
-        start_row = 6  # asume encabezado en fila 6
-        row = start_row
-        for t in tx_docs:
-            # ajuste: si 'date' es datetime conviértelo a string ISO
-            dt = t.get('date')
-            try:
-                total_val = str(t.get('total', ''))
-                total_val = total_val.split('.')
-                packd = t.get('packs', '')
-                if len(total_val) > 1:
-                    total_val = total_val[0] + ',' + str( int(round(((int(total_val[1])/(10**len(total_val[1]))) * packd), 1)) )
-                else:
-                    total_val = total_val[0]
+    # convertir lista de documentos en diccionario por código
+    tx_map = {}
+    for t in tx_docs:
+        code = str(t.get('codigo') or t.get('code') or '').strip()
+        if not code:
+            continue
 
-            except Exception as e:
-                total_val = 'Error'
-                print("Error processing total value:", e)
-
-            if hasattr(dt, 'isoformat'):
-                dt_val = dt.isoformat()
+        try:
+            total_val = str(t.get('total', ''))
+            total_val = total_val.split('.')
+            packd = t.get('packs', '')
+            if len(total_val) > 1:
+                total_val = total_val[0] + ',' + str(int(round(((int(total_val[1]) / (10 ** len(total_val[1]))) * packd), 1)))
             else:
-                dt_val = str(dt) if dt is not None else ''
-            ws.cell(row=row, column=1, value=t.get('codigo', ''))
-            ws.cell(row=row, column=2, value=t.get('product', ''))
-            ws.cell(row=row, column=4, value=total_val)
-            row += 1
+                total_val = total_val[0]
+        except Exception as e:
+            print(f"Error processing total for {code}: {e}")
+            total_val = 'Error'
+
+        tx_map[code] = {
+            'product': t.get('product', ''),
+            'total_val': total_val
+        }
+
+    # cargar plantilla y rellenar
+    wb = load_workbook(tpl_path)
+    if 'Datos' not in wb.sheetnames:
+        return "Sheet 'Datos' not found in template", 400
+
+    ws = wb['Datos']
+
+    # Asume encabezado en fila 6 y que los códigos empiezan en columna 1
+    start_row = 6
+    code_col = 1
+    product_col = 2
+    total_col = 4
+
+    row = start_row
+    while True:
+        code_cell = ws.cell(row=row, column=code_col)
+        code_value = str(code_cell.value).strip() if code_cell.value else ''
+        if not code_value:  # si no hay más códigos, salimos
+            break
+
+        # buscar si existe ese código en la BD
+        if code_value in tx_map:
+            data = tx_map[code_value]
+            ws.cell(row=row, column=product_col, value=data['product'])
+            ws.cell(row=row, column=total_col, value=data['total_val'])
+        else:
+            # si no está en la BD, puedes limpiar la celda o dejarla como está
+            ws.cell(row=row, column=total_col, value='0')
+
+        row += 1
 
     # generar archivo en memoria y devolver
     bio = io.BytesIO()
     wb.save(bio)
     bio.seek(0)
     filename_out = f"report_{datetime.datetime.now().strftime('%Y%m%d_%H%M%S')}.xlsx"
-    return send_file(bio, as_attachment=True, download_name=filename_out, mimetype='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
+    return send_file(
+        bio,
+        as_attachment=True,
+        download_name=filename_out,
+        mimetype='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+    )
 
 @app.route('/api/inventory/<id>')
 def api_inventory(id):
