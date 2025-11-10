@@ -25,36 +25,72 @@
       </div>
 
       <div class="form-row">
-        <div class="field">
+
+        <div class="field" style="flex:1 1 30%;">
+          <label for="product_search" class="small">Buscar producto</label>
+          <input id="product_search" type="text" value="{{ form.product.data }}" placeholder="Buscar por nombre o código..." style="padding:8px;border-radius:8px;border:1px solid rgba(15,23,42,0.06);margin-bottom:6px;width:90%;">
           <label for="{{ form.product.id }}">Producto</label>
-          <!-- permitir seleccionar inventario por id o editar texto -->
-          <select name="{{ form.product.name }}" id="{{ form.product.id }}">
-            <option value="">-- Mantener/seleccionar --</option>
-            {% for inv in (find_inventory() if find_inventory else []) %}
-              <option value="{{ inv._id }}" {% if form.product.data and (form.product.data==inv._id or form.product.data==inv.product) %}selected{% endif %}>{{ inv.product }}{% if inv.code %} — {{ inv.code }}{% endif %}</option>
-            {% endfor %}
-          </select>
-          <div style="margin-top:8px;">
-            <label class="small">Producto (manual)</label>
-            <input type="text" name="{{ form.product.name }}_custom" placeholder="Nombre manual (opcional)">
-          </div>
+          {% if inventory_options %}
+            <select name="{{ form.product.name }}" id="{{ form.product.id }}" size="6" style="width:90%;padding:6px;border-radius:6px;border:1px solid rgba(15,23,42,0.06);">
+              <option value="">-- Seleccionar producto --</option>
+              {% for opt in inventory_options %}
+                <option
+                  value="{{ opt.value }}"
+                  data-shelves="{{ opt.shelves }}"
+                  data-floors="{{ opt.floors }}"
+                  data-packs="{{ opt.packs }}"
+                  data-code="{{ opt.code }}"
+                  data-product-name="{{ opt.product_name }}"
+                  {% if form.product.data==opt.value %}selected{% endif %}>
+                  {{ opt.label }}
+                </option>
+              {% endfor %}
+            </select>
+
+            <div style="display:flex;gap:8px;margin-top:8px;align-items:center;">
+              <div style="flex:1">
+                <label class="small">Código (auto)</label>
+                <input id="codigo_display" type="text" value="{{ form.codigo.data }}" readonly style="width:90%;padding:8px;border-radius:6px;border:1px solid rgba(15,23,42,0.06);background:#f8fafc;">
+                <!-- hidden field to submit codigo -->
+                <input type="hidden" name="codigo" id="codigo_hidden" value="{{ form.codigo.data }}">
+              </div>
+            </div>
+
+          {% else %}
+            {{ form.product() }}
+          {% endif %}
         </div>
 
-        <div class="field">
-          <label>Total</label>
-          {{ form.total() }}
-          <div class="small muted">Puedes ingresar un total manual o usar los campos temporales abajo para recalcular.</div>
+        <div class="field" style="flex:1 1 35%;">
+          <label class="small">Cantidades temporales (para cálculo)</label>
+          <div class="form-row" style="margin-top:6px;">
+            <div class="field">
+              <label class="small">Shelves</label>
+              <input id="temp_shelves" name="temp_shelves" type="number" min="0" step="1" value="0">
+            </div>
+            <div class="field">
+              <label class="small">Floors</label>
+              <input id="temp_floors" name="temp_floors" type="number" min="0" step="1" value="0">
+            </div>
+            <div class="field">
+              <label class="small">Packs</label>
+              <!-- packs se multiplica por el campo 'packs' del inventario -->
+              <input id="temp_packs" name="temp_packs" type="number" min="0" step="1" value="0">
+            </div>
+            <div class="field">
+              <label class="small">Cajas (decimal)</label>
+              <!-- cajas se SUMAN directamente, no tienen multiplicador -->
+              <input id="temp_cajas" name="temp_cajas" type="number" min="0" step="1" value="0">
+            </div>
+          </div>
         </div>
       </div>
-
-      <div class="form-row">
-        <div class="field">
-          <label class="small">Recalcular (opcional)</label>
-          <div class="form-row">
-            <div class="field"><input name="temp_shelves" type="number" min="0" step="1" placeholder="Shelves"></div>
-            <div class="field"><input name="temp_floors" type="number" min="0" step="1" placeholder="Floors"></div>
-            <div class="field"><input name="temp_packs" type="number" min="0" step="1" placeholder="Packs"></div>
-          </div>
+      
+      <div class="form-row" style="align-items:center;">
+        <div class="field" >
+          <label id="Total_value">Total</label>
+          {{ form.total() }}
+          <div class="small muted">Puedes ingresar un total manual o usar los campos temporales abajo para recalcular.</div>
         </div>
       </div>
 
@@ -65,11 +101,181 @@
     </form>
   </div>
 
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
   <script>
     // Si se escribe un nombre manual, lo enviamos en el campo que espera WTForm
     (function(){
       const form = document.getElementById('edit-tx-form');
       const select = document.getElementById('{{ form.product.id }}');
+      const search = document.getElementById('product_search');
+      const custom = document.getElementById('product_custom');
+      const codigoDisplay = document.getElementById('codigo_display');
+      const codigoHidden = document.getElementById('codigo_hidden');
+      const codigoCustom = document.getElementById('codigo_custom');
+      const inpShelves = document.getElementById('temp_shelves');
+      const inpFloors = document.getElementById('temp_floors');
+      const inpPacks = document.getElementById('temp_packs');
+      const inpCajas = document.getElementById('temp_cajas'); 
+      const totalField = document.getElementsByName('{{ form.total.name }}')[0];
+
+      function parseNum(v){ const n = parseFloat(v); return isNaN(n) ? 0 : n; }
+
+      function computeTotal(){
+        let ms = 1, mf = 1, mp = 1;
+        if (select && select.value){
+          const opt = select.options[select.selectedIndex];
+          ms = parseNum(opt.dataset.shelves);
+          mf = parseNum(opt.dataset.floors);
+          mp = parseNum(opt.dataset.packs);
+        }
+        const ts = parseNum(inpShelves.value);
+        const tf = parseNum(inpFloors.value);
+        const tp = parseNum(inpPacks.value);
+        const tc = parseNum(inpCajas.value); // cajas sumadas directamente
+        const total = parseNum(totalField.value) + (ts * ms) + (tf * mf) + (tp) + tc/mp;
+        if (totalField) totalField.value = total;
+      }
+
+      // actualizar codigo cuando cambia la selección
+      function updateCodigoFromSelect(){
+        if (!select) return;
+        const opt = select.options[select.selectedIndex];
+        if (opt && opt.dataset){
+          const code = opt.dataset.code || '';
+          codigoDisplay.value = code;
+          codigoHidden.value = code;
+        } else {
+          codigoDisplay.value = '';
+          codigoHidden.value = '';
+        }
+      }
+
+      // filtro simple para el select + intento de selección automática por match exacto
+      function filterOptions(){
+        const qRaw = search.value || '';
+        const q = qRaw.trim().toLowerCase();
+
+        // Mostrar/ocultar opciones según la búsqueda
+        for (let i=0;i<select.options.length;i++){
+          const opt = select.options[i];
+          if (i===0){ opt.hidden = false; continue; }
+          const text = (opt.text || '').toLowerCase();
+          const code = (opt.dataset.code || '').toLowerCase();
+          const pname = (opt.dataset.productName || '').toLowerCase();
+          opt.hidden = q ? !(text.includes(q) || code.includes(q) || pname.includes(q)) : false;
+        }
+
+        // Si hay texto, intentar seleccionar la opción que coincida exactamente (texto, productName o código)
+        if (q){
+          for (let i=0;i<select.options.length;i++){
+            const opt = select.options[i];
+            const text = (opt.text || '').toLowerCase().trim();
+            const code = (opt.dataset.code || '').toLowerCase().trim();
+            const pname = (opt.dataset.productName || '').toLowerCase().trim();
+            if (text === q || code === q || pname === q){
+              select.value = opt.value;
+              // disparar updates
+              updateCodigoFromSelect();
+              computeTotal();
+              // asegurar que la opción no esté oculta
+              opt.hidden = false;
+              return;
+            }
+          }
+        }
+      }
+
+      // eventos
+      if (select){
+        select.addEventListener('change', function(){
+          updateCodigoFromSelect();
+          computeTotal();
+
+          // Mostrar alerta menos invasiva con SweetAlert2 (toast)
+          try {
+            const opt = select.options[select.selectedIndex];
+            const pname = (opt && opt.dataset) ? (opt.dataset.productName || opt.text) : '';
+
+            // Si hay id seleccionado, pedir datos adicionales al servidor y mostrarlos en el toast
+            const selId = select.value;
+            if (selId) {
+              fetch(`/api/inventory/${encodeURIComponent(selId)}`)
+                .then(resp => resp.json())
+                .then(data => {
+                  if (data && !data.error) {
+                    const code = data.code || '';
+                    const suma = (typeof data.transactions_today_sum !== 'undefined') ? data.transactions_today_sum : '0';
+                    Swal.fire({
+                      toast: true,
+                      position: 'top-end',
+                      icon: 'info',
+                      title: 'Producto seleccionado',
+                      text: `${pname}${suma ? ' — ' + suma + ' unidades transaccionadas hoy' : ' — Ninguna unidad transaccionada hoy'}`,
+                      showConfirmButton: false,
+                      timer: 6000,
+                      timerProgressBar: true
+                    });
+                  } else {
+                    Swal.fire({
+                      toast: true,
+                      position: 'top-end',
+                      icon: 'info',
+                      title: 'Producto seleccionado',
+                      text: pname,
+                      showConfirmButton: false,
+                      timer: 2000,
+                      timerProgressBar: true
+                    });
+                  }
+                })
+                .catch(err => {
+                  console.error('Fetch inventory error', err);
+                  Swal.fire({
+                    toast: true,
+                    position: 'top-end',
+                    icon: 'info',
+                    title: 'Producto seleccionado',
+                    text: pname,
+                    showConfirmButton: false,
+                    timer: 2000,
+                    timerProgressBar: true
+                  });
+                });
+            } else {
+              Swal.fire({
+                toast: true,
+                position: 'top-end',
+                icon: 'info',
+                title: 'Producto seleccionado',
+                text: pname,
+                showConfirmButton: false,
+                timer: 2000,
+                timerProgressBar: true
+              });
+            }
+          } catch (err) {
+            console.error('Error mostrando alerta de producto:', err);
+          }
+        });
+      }
+
+      [inpShelves, inpFloors, inpPacks, inpCajas].forEach(el=>{
+        if (!el) return;
+        el.addEventListener('input', computeTotal);
+        el.addEventListener('change', computeTotal);
+      });
+      if (search){
+        search.addEventListener('input', filterOptions);
+      }
+
+      // Si el campo search ya contiene el nombre (por ejemplo lo pasas desde servidor),
+      // hacer una búsqueda/selección inicial
+      if (search && search.value && search.value.trim().length > 0){
+        // delay pequeño para asegurar que el select se haya poblado
+        setTimeout(filterOptions, 50);
+      }
+
       form.addEventListener('submit', function(){
         const custom = form.querySelector('input[name="{{ form.product.name }}_custom"]');
         if (custom && custom.value.trim().length > 0){
@@ -84,6 +290,7 @@
           if (select) select.disabled = true;
         }
       });
+
     })();
   </script>
 {% endblock %}

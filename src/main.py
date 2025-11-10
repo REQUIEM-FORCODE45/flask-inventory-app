@@ -498,7 +498,31 @@ def edit_transaction(id):
         return "Transacción no encontrada", 404
 
     if request.method == 'GET':
-        # popular formulario (fecha se mostrará readonly en template)
+
+        inventory_options = []
+        try:
+            if 'find_inventory' in globals() and callable(find_inventory):
+                inv_docs = find_inventory()
+            else:
+                db = get_database()
+                inv_docs = list(db.inventory.find({}, {'product': 1, 'code': 1, 'shelves': 1, 'floors': 1, 'packs': 1}).limit(500))
+        except Exception as e:
+            print("Error cargando inventario para select:", e)
+            inv_docs = []
+
+        for doc2 in inv_docs:
+            _id = str(doc2.get('_id'))
+            prod = doc2.get('product') or doc2.get('code') or _id
+            inventory_options.append({
+                'value': _id,
+                'label': f"{prod}" + (f" — {doc2.get('code')}" if doc2.get('code') else ""),
+                'shelves': doc2.get('shelves', 1),
+                'floors': doc2.get('floors', 1),
+                # packs pueden ser decimales (cajas)
+                'packs': float(doc2.get('packs', 1)),
+                'code': doc2.get('code', ''),
+                'product_name': prod
+            })
         try:
             form.id.data = doc.get('id')
             # si el campo date es datetime, asignar date()
@@ -507,11 +531,14 @@ def edit_transaction(id):
                 form.date.data = dt.date() if hasattr(dt, 'date') else dt
             except Exception:
                 form.date.data = dt
+
             form.product.data = doc.get('product')
             form.total.data = doc.get('total')
+            form.codigo.data = doc.get('codigo')
         except Exception:
             pass
-        return render_template('edit_transaction.html', form=form, doc_id=str(doc.get('_id')), stored_date=doc.get('date'))
+        
+        return render_template('edit_transaction.html', form=form, doc_id=str(doc.get('_id')), stored_date=doc.get('date'), inventory_options=inventory_options)
 
     # POST: actualizar transacción (no permitimos cambiar la fecha)
     if form.validate_on_submit():
@@ -767,4 +794,4 @@ if __name__ == '__main__':
         print("MongoDB connection OK")
     else:
         print("MongoDB connection FAILED:", err)
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=8080, debug=True)

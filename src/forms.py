@@ -16,4 +16,5 @@ class TransactionForm(FlaskForm):
     date = DateField('Date', format='%Y-%m-%d', validators=[DataRequired()])
     product = StringField('Product', validators=[DataRequired()])
     total = FloatField('Total', validators=[DataRequired()])
+    codigo = IntegerField('codigo', validators=[DataRequired()])
     submit = SubmitField('Record Transaction')
