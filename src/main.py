@@ -7,6 +7,10 @@ from bson import ObjectId
 import re
 import io
 import os
+import datetime
+from werkzeug.utils import secure_filename
+from flask import send_from_directory, flash
+
 from openpyxl import load_workbook
 from flask import send_file
 import config as conf
@@ -38,6 +42,21 @@ except ImportError:
     add_inventory_item = None
     add_transaction = None
     find_inventory = None
+
+# carpeta para plantillas excel
+TEMPLATE_DIR = os.path.join(os.path.dirname(__file__), 'excel_templates')
+os.makedirs(TEMPLATE_DIR, exist_ok=True)
+
+ALLOWED_EXT = {'xlsx', 'xls'}
+
+# nombres recomendados (puedes editarlos en el select del formulario)
+TEMPLATE_TARGETS = {
+    'PLANTILLA_INFORMACION_LIMPIA': 'PLANTILLA_INFORMACION_LIMPIA.xlsx',
+    'INVENTARIO_PISO': 'INVENTARIO_PISO.xlsx'
+}
+
+def allowed_file(filename):
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXT
 
 def _next_transaction_id():
     """Calcula el siguiente id de transacción basándose en la última transacción.
@@ -887,6 +906,46 @@ def api_inventory(id):
         return jsonify(out)
     except Exception as e:
         return jsonify({'error': 'exception', 'msg': str(e)}), 500
+
+@app.route('/upload_template', methods=['POST'])
+def upload_template():
+    """
+    Subir un archivo xlsx/xls y guardarlo en excel_templates.
+    Si 'target' viene con una clave conocida, el archivo guardado usará ese nombre (reemplaza).
+    Si target == 'custom' o no viene, se guarda con el nombre original (secure_filename).
+    """
+    if 'template_file' not in request.files:
+        return "No file part", 400
+    f = request.files['template_file']
+    if f.filename == '':
+        return "No selected file", 400
+    if not allowed_file(f.filename):
+        return "Tipo de archivo no permitido. Use .xlsx o .xls", 400
+
+    target = request.form.get('target', '').strip()
+    if target and target in TEMPLATE_TARGETS:
+        filename = TEMPLATE_TARGETS[target]
+    else:
+        filename = secure_filename(f.filename)
+
+    save_path = os.path.join(TEMPLATE_DIR, filename)
+    try:
+        f.save(save_path)
+    except Exception as e:
+        return f"Error saving file: {e}", 500
+
+    return redirect(url_for('index'))
+
+@app.route('/templates/<filename>')
+def download_template(filename):
+    """Descargar plantilla desde la carpeta excel_templates."""
+    # seguridad: permitir sólo archivos con extensión permitida
+    if not allowed_file(filename):
+        return "Archivo no permitido", 400
+    try:
+        return send_from_directory(TEMPLATE_DIR, filename, as_attachment=True)
+    except Exception as e:
+        return f"Error descargando archivo: {e}", 404
 
 if __name__ == '__main__':
     # comprobación al arrancar en consola
