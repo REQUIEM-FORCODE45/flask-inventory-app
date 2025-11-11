@@ -9,7 +9,9 @@
         <h2 style="margin:0 0 6px 0;">Inventario</h2>
         <div class="small">Lista de artículos disponibles</div>
       </div>
-      <div class="controls">
+      <div class="controls" style="display:flex;gap:8px;align-items:center;">
+        <input id="inventory_search_input" type="search" placeholder="Buscar por código o producto..." style="padding:6px;border-radius:6px;border:1px solid rgba(15,23,42,0.06);">
+        <button id="inventory_search_btn" class="btn">Buscar</button>
         <a class="btn" href="{{ url_for('add_inventory') }}">Agregar artículo</a>
         <a class="btn secondary" href="{{ url_for('index') }}">Volver</a>
       </div>
@@ -17,19 +19,19 @@
 
     {% if inventory_list %}
       <div style="overflow:auto;">
-      <table>
+      <table id="inventory-table">
         <thead>
           <tr>
             <th>_id</th><th>id</th><th>code</th><th>product</th><th>shelves</th><th>floors</th><th>packs</th><th>Acciones</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody id="inventory-tbody">
         {% for it in inventory_list %}
           <tr>
             <td class="small">{{ it._id }}</td>
-            <td>{{ it.id }}</td>
-            <td>{{ it.code }}</td>
-            <td>{{ it.product }}</td>
+            <td class="inv-id">{{ it.id }}</td>
+            <td class="inv-code">{{ it.code }}</td>
+            <td class="inv-product">{{ it.product }}</td>
             <td>{{ it.shelves }}</td>
             <td>{{ it.floors }}</td>
             <td>{{ it.packs }}</td>
@@ -48,8 +50,132 @@
         </tbody>
       </table>
       </div>
+
+      <!-- pagination controls -->
+      <div id="inventory-pagination" style="display:flex;gap:6px;align-items:center;margin-top:12px;flex-wrap:wrap;"></div>
     {% else %}
       <p class="muted">No hay registros de inventario.</p>
     {% endif %}
   </div>
+
+  <script>
+  (function(){
+    const ROWS_PER_PAGE = 6;
+    const tbody = document.getElementById('inventory-tbody');
+    if (!tbody) return;
+
+    let allRows = Array.from(tbody.querySelectorAll('tr'));
+    let filteredRows = allRows.slice();
+    let currentPage = 1;
+
+    const paginationDiv = document.getElementById('inventory-pagination');
+    const searchInput = document.getElementById('inventory_search_input');
+    const searchBtn = document.getElementById('inventory_search_btn');
+
+    function renderPage(page){
+      // hide all
+      tbody.innerHTML = '';
+      const start = (page - 1) * ROWS_PER_PAGE;
+      const slice = filteredRows.slice(start, start + ROWS_PER_PAGE);
+      slice.forEach(r => tbody.appendChild(r));
+      currentPage = page;
+      renderPagination();
+      // remove previous highlight
+      tbody.querySelectorAll('.highlight').forEach(el => el.classList.remove('highlight'));
+    }
+
+    function renderPagination(){
+      paginationDiv.innerHTML = '';
+      const totalPages = Math.max(1, Math.ceil(filteredRows.length / ROWS_PER_PAGE));
+      // Prev
+      const prev = document.createElement('button');
+      prev.className = 'btn';
+      prev.textContent = '« Prev';
+      prev.disabled = currentPage <= 1;
+      prev.addEventListener('click', ()=> renderPage(currentPage - 1));
+      paginationDiv.appendChild(prev);
+
+      // page numbers (limit visible)
+      const maxButtons = 7;
+      let startPage = Math.max(1, currentPage - Math.floor(maxButtons/2));
+      let endPage = Math.min(totalPages, startPage + maxButtons - 1);
+      if (endPage - startPage < maxButtons - 1){
+        startPage = Math.max(1, endPage - maxButtons + 1);
+      }
+      for (let p = startPage; p <= endPage; p++){
+        const b = document.createElement('button');
+        b.className = 'btn' + (p === currentPage ? ' active' : '');
+        b.textContent = p;
+        b.addEventListener('click', ()=> renderPage(p));
+        paginationDiv.appendChild(b);
+      }
+
+      // Next
+      const next = document.createElement('button');
+      next.className = 'btn';
+      next.textContent = 'Next »';
+      next.disabled = currentPage >= totalPages;
+      next.addEventListener('click', ()=> renderPage(currentPage + 1));
+      paginationDiv.appendChild(next);
+
+      // info
+      const info = document.createElement('span');
+      info.style.marginLeft = '10px';
+      info.className = 'small muted';
+      info.textContent = `Mostrando ${Math.min(filteredRows.length, ROWS_PER_PAGE)} de ${filteredRows.length} (página ${currentPage}/${totalPages})`;
+      paginationDiv.appendChild(info);
+    }
+
+    function normalizeText(s){ return String(s || '').trim().toLowerCase(); }
+
+    function applyFilter(q){
+      if (!q){
+        filteredRows = allRows.slice();
+      } else {
+        filteredRows = allRows.filter(row=>{
+          const code = normalizeText(row.querySelector('.inv-code')?.textContent);
+          const prod = normalizeText(row.querySelector('.inv-product')?.textContent);
+          const iid = normalizeText(row.querySelector('.inv-id')?.textContent);
+          return code.includes(q) || prod.includes(q) || iid.includes(q);
+        });
+      }
+      renderPage(1);
+    }
+
+    searchBtn.addEventListener('click', function(e){
+      e.preventDefault();
+      const q = normalizeText(searchInput.value);
+      applyFilter(q);
+      // if filteredRows not empty, highlight first match and ensure it's visible
+      if (filteredRows.length){
+        // highlight first row on current page
+        const firstRow = tbody.querySelector('tr');
+        if (firstRow){
+          firstRow.classList.add('highlight');
+          // scroll into view
+          firstRow.scrollIntoView({behavior:'smooth', block:'center'});
+        }
+      } else {
+        // no local match — optional: perform server search (not implemented here)
+        alert('No se encontraron coincidencias localmente. Prueba una búsqueda distinta.');
+      }
+    });
+
+    // allow pressing Enter in search input
+    searchInput.addEventListener('keydown', function(e){
+      if (e.key === 'Enter'){
+        e.preventDefault();
+        searchBtn.click();
+      }
+    });
+
+    // initial render
+    renderPage(1);
+
+    // small CSS highlight style
+    const style = document.createElement('style');
+    style.textContent = '.highlight{background: #fff3cd;} .btn.active{background:#0b74de;color:#fff;}';
+    document.head.appendChild(style);
+  })();
+  </script>
 {% endblock %}

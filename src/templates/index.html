@@ -8,12 +8,16 @@
 </head>
 <body>
     {% extends "base.html" %}
+    {% block title %}Inicio — Inventario Coca-Cola{% endblock %}
+
     {% block content %}
     <h1>Inicio</h1>
 
-    <div style="margin-top:20px;">
-        <!-- descarga la plantilla (usa ?template=nombre.xlsx para especificar otra) -->
-        <a class="btn" href="{{ url_for('download_report') }}">Descargar plantilla con datos</a>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:8px;padding:24px 0;">
+        <div style="display:flex;gap:14px;justify-content:center;align-items:center;flex-wrap:wrap;">
+            <a class="btn" href="{{ url_for('download_report') }}" style="min-width:220px;text-align:center;padding:10px 16px;">Descargar Informe 1</a>
+            <a class="btn" href="{{ url_for('download_report2') }}" style="min-width:220px;text-align:center;padding:10px 16px;">Descargar Informe 2</a>
+        </div>
     </div>
     {% endblock %}
 </body>

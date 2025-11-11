@@ -6,8 +6,10 @@ from zoneinfo import ZoneInfo
 from bson import ObjectId
 import re
 import io
+import os
 from openpyxl import load_workbook
 from flask import send_file
+import config as conf
 
 app = Flask(__name__)
 app.config.from_object('config.Config')
@@ -600,6 +602,105 @@ def edit_transaction(id):
 
     return render_template('edit_transaction.html', form=form, doc_id=str(doc.get('_id')), stored_date=doc.get('date'))
 
+@app.route('/download_report2')
+def download_report2():
+    """
+    Rellena la plantilla 'PLANTILLA_INFORMACION_LIMPIA.xlsx' hoja 'Fisico' con los totales
+    agrupados por código/producto (usa find_transactions aggregate_by_product+group_by_code).
+    Busca la columna 'Código' (o variantes) en las primeras 10 filas para detectar encabezado.
+    """
+    base_dir = os.path.dirname(__file__)
+    tpl_dir = os.path.join(base_dir, 'excel_templates')
+    tpl_path = os.path.join(tpl_dir, 'PLANTILLA_INFORMACION_LIMPIA.xlsx')
+
+    # obtener datos desde modelos o BD
+    try:
+        if 'find_transactions' in globals() and callable(find_transactions):
+            tx_docs = find_transactions(aggregate_by_product=True, group_by_code=True)
+            print("Loaded transactions via find_transactions(), count:", len(tx_docs))
+        else:
+            db = get_database()
+            tx_docs = list(db.transactions.find().limit(1000))
+    except Exception as e:
+        print("Error loading transactions:", e)
+        tx_docs = []
+
+    # convertir lista de documentos en diccionario por código
+    tx_map = {}
+    for t in tx_docs:
+        code = str(t.get('codigo') or t.get('code') or '').strip()
+        if not code:
+            continue
+
+        try:
+            total_val = str(t.get('total', ''))
+            total_val = total_val.split('.')
+            packd = t.get('packs', '')
+            if len(total_val) > 1:
+                total_val = total_val[0] + ',' + str(int(round(((int(total_val[1]) / (10 ** len(total_val[1]))) * packd), 1)))
+            else:
+                total_val = total_val[0]
+        except Exception as e:
+            print(f"Error processing total for {code}: {e}")
+            total_val = 'Error'
+
+        tx_map[code] = {
+            'product': t.get('product', ''),
+            'total_val': total_val
+        }
+
+    # abrir plantilla y hoja 'Fisico'
+    wb = load_workbook(tpl_path)
+    sheet_name = 'Fisico'
+
+    if sheet_name not in wb.sheetnames:
+        return f"Sheet '{sheet_name}' not found in template", 400
+    ws = wb[sheet_name]
+
+    envase = []
+    for i in range(5, 37):
+        code_cell = ws.cell(row=i, column=1)
+        code_value = str(code_cell.value).strip().lower() if code_cell.value else ''
+        envase.append(code_value)
+        
+        if not code_value:
+            continue
+
+        if code_value in tx_map:
+            data  = tx_map[code_value]
+            ws.cell(row=i, column=15, value=data['total_val'])
+        else:
+            ws.cell(row=i, column=15, value='0')
+
+        print(f"Row {i} code cell: '{code_value}'")        
+
+    #iteraciones
+    for i in range(5,32):
+        code_cell = ws.cell(row=i, column=1)
+        code_value = str(code_cell.value).strip().lower() if code_cell.value else ''
+        if not code_value:
+            continue
+        
+        if code_value in tx_map:
+            data  = tx_map[code_value]
+            ws.cell(row=i, column=2, value=data['total_val'])
+        else:
+            ws.cell(row=i, column=2, value='0')
+
+        print(f"Row {i} code cell: '{code_value}'")
+
+    # guardar y devolver
+    bio = io.BytesIO()
+    wb.save(bio)
+    bio.seek(0)
+    filename_out = f"report_fisico_{datetime.datetime.now().strftime('%Y%m%d_%H%M%S')}.xlsx"
+    return send_file(
+        bio,
+        as_attachment=True,
+        download_name=filename_out,
+        mimetype='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+    )
+
 @app.route('/download_report')
 def download_report():
     """
@@ -794,4 +895,4 @@ if __name__ == '__main__':
         print("MongoDB connection OK")
     else:
         print("MongoDB connection FAILED:", err)
-    app.run(host='0.0.0.0', port=8080, debug=True)
+    app.run(host='0.0.0.0', port=conf.Config.PUERTO, debug=True)

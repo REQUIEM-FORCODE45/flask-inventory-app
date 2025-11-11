@@ -70,21 +70,21 @@
           <div class="form-row" style="margin-top:6px;">
             <div class="field">
               <label class="small">Shelves</label>
-              <input id="temp_shelves" name="temp_shelves" type="number" min="0" step="1" value="0">
+              <input id="temp_shelves" name="temp_shelves" type="number" min="0" step="1" value="">
             </div>
             <div class="field">
               <label class="small">Floors</label>
-              <input id="temp_floors" name="temp_floors" type="number" min="0" step="1" value="0">
+              <input id="temp_floors" name="temp_floors" type="number" min="0" step="1" value="">
             </div>
             <div class="field">
               <label class="small">Packs</label>
               <!-- packs se multiplica por el campo 'packs' del inventario -->
-              <input id="temp_packs" name="temp_packs" type="number" min="0" step="1" value="0">
+              <input id="temp_packs" name="temp_packs" type="number" min="0" step="1" value="">
             </div>
             <div class="field">
               <label class="small">Cajas (decimal)</label>
               <!-- cajas se SUMAN directamente, no tienen multiplicador -->
-              <input id="temp_cajas" name="temp_cajas" type="number" min="0" step="1" value="0">
+              <input id="temp_cajas" name="temp_cajas" type="number" min="0" step="1" value="">
             </div>
           </div>
         </div>
@@ -132,10 +132,12 @@
           mf = parseNum(opt.dataset.floors);
           mp = parseNum(opt.dataset.packs);
         }
-        const ts = parseNum(inpShelves.value);
-        const tf = parseNum(inpFloors.value);
-        const tp = parseNum(inpPacks.value);
-        const tc = parseNum(inpCajas.value); // cajas sumadas directamente
+
+        const ts = parseNum(inpShelves.value ? inpShelves.value : 0);
+        const tf = parseNum(inpFloors.value ? inpFloors.value : 0);
+        const tp = parseNum(inpPacks.value ? inpPacks.value : 0);
+        const tc = parseNum(inpCajas.value ? inpCajas.value : 0); // cajas sumadas directamente
+
         const total = (ts * ms) + (tf * mf) + (tp) + tc/mp;
         if (totalField) totalField.value = total;
       }

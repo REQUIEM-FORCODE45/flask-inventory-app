@@ -85,7 +85,14 @@
           </div>
         </div>
       </div>
-      
+
+      <div class="form-row" style="align-items:center;">
+        <div class="field" >
+          <label >Total actual</label>
+          <input id="Total_old" type="text" value="{{ form.total.data }}" readonly style="background:#f3f4f6;border-radius:6px;padding:8px;border:1px solid rgba(15,23,42,0.06);">
+        </div>
+      </div>      
+
       <div class="form-row" style="align-items:center;">
         <div class="field" >
           <label id="Total_value">Total</label>
@@ -118,7 +125,8 @@
       const inpPacks = document.getElementById('temp_packs');
       const inpCajas = document.getElementById('temp_cajas'); 
       const totalField = document.getElementsByName('{{ form.total.name }}')[0];
-
+      const  totalOldLabel = document.getElementById('Total_old');
+      console.log('totalOldLabel', totalOldLabel.value);
       function parseNum(v){ const n = parseFloat(v); return isNaN(n) ? 0 : n; }
 
       function computeTotal(){
@@ -133,7 +141,7 @@
         const tf = parseNum(inpFloors.value);
         const tp = parseNum(inpPacks.value);
         const tc = parseNum(inpCajas.value); // cajas sumadas directamente
-        const total = parseNum(totalField.value) + (ts * ms) + (tf * mf) + (tp) + tc/mp;
+        const total = parseNum(totalOldLabel.value) + (ts * ms) + (tf * mf) + (tp) + tc/mp;
         if (totalField) totalField.value = total;
       }
 
