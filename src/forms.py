@@ -6,9 +6,9 @@ class InventoryItemForm(FlaskForm):
     id = IntegerField('ID', validators=[DataRequired()])
     code = IntegerField('Code', validators=[DataRequired()])
     product = StringField('Product', validators=[DataRequired()])
-    shelves = IntegerField('Shelves', validators=[DataRequired()])
-    floors = IntegerField('Floors', validators=[DataRequired()])
-    packs = IntegerField('Packs', validators=[DataRequired()])
+    shelves = IntegerField('Estivas', validators=[DataRequired()])
+    floors = IntegerField('Piso', validators=[DataRequired()])
+    packs = IntegerField('Pacas', validators=[DataRequired()])
     submit = SubmitField('Add Inventory Item')
 
 class TransactionForm(FlaskForm):
