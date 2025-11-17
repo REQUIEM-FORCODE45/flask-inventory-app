@@ -678,7 +678,7 @@ def download_report2():
 
     envase = []
     for i in range(5, 37):
-        code_cell = ws.cell(row=i, column=1)
+        code_cell = ws.cell(row=i, column=14)
         code_value = str(code_cell.value).strip().lower() if code_cell.value else ''
         envase.append(code_value)
         
@@ -690,13 +690,14 @@ def download_report2():
             ws.cell(row=i, column=15, value=data['total_val'])
         else:
             ws.cell(row=i, column=15, value='0')
-
-        print(f"Row {i} code cell: '{code_value}'")        
+      
 
     #iteraciones
+    inicio = []
     for i in range(5,32):
         code_cell = ws.cell(row=i, column=1)
         code_value = str(code_cell.value).strip().lower() if code_cell.value else ''
+        inicio.append(code_value)
         if not code_value:
             continue
         
@@ -706,7 +707,26 @@ def download_report2():
         else:
             ws.cell(row=i, column=2, value='0')
 
-        print(f"Row {i} code cell: '{code_value}'")
+
+    start_row = 32
+    code_col = 1
+    total_col = 2
+
+    row = start_row
+    # iterar tx_map y añadir los códigos que NO estén en inicio ni en envase
+    for code, data in tx_map.items():
+        if not code:
+            continue
+        code_l = code.strip().lower()
+        # omitir si está en las listas encontradas anteriormente
+        if (code_l in inicio) or (code_l in envase):
+            continue
+
+        # escribir en la fila actual
+        ws.cell(row=row, column=code_col, value=code)
+        ws.cell(row=row, column=total_col, value=data.get('total_val', 0))
+        row += 1
+
 
     # guardar y devolver
     bio = io.BytesIO()
@@ -727,9 +747,6 @@ def download_report():
       - Columna código ya existente en la hoja 'Datos'
       - Rellena la columna 'total' según los datos traídos desde la BD.
     """
-    import os, io, datetime
-    from flask import send_file, request
-    from openpyxl import load_workbook
 
     # template filename desde query (fallback)
     template_name = request.args.get('template', 'Copia_INVENTARIO_PISO.xlsx')
