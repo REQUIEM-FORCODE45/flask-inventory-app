@@ -4,40 +4,39 @@
 
 {% block content %}
   <div class="card">
-    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
+    <div style="display:flex;flex-direction:column;gap:12px;margin-bottom:12px;">
       <div>
-        <h2 style="margin:0 0 6px 0;">Transacciones</h2>
+        <h2 style="margin:0 0 6px 0;font-size:clamp(20px, 5vw, 28px);">Transacciones</h2>
         <div class="small">Historial de transacciones</div>
       </div>
-      <div class="controls">
-        <a class="btn" href="{{ url_for('record_transaction') }}">Agregar transacción</a>
-        <a class="btn secondary" href="{{ url_for('index') }}">Volver</a>
+      <div class="controls" style="display:grid;grid-template-columns:1fr 1fr;gap:8px;width:100%;">
+        <a class="btn" href="{{ url_for('record_transaction') }}" style="text-align:center;display:flex;align-items:center;justify-content:center;min-height:44px;font-size:14px;">+ Trans.</a>
+        <a class="btn secondary" href="{{ url_for('index') }}" style="text-align:center;display:flex;align-items:center;justify-content:center;min-height:44px;font-size:14px;">Volver</a>
       </div>
     </div>
 
     {% if transactions_list %}
-      <div style="overflow:auto;">
-      <table>
+      <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;">
+      <table style="width:100%;border-collapse:collapse;">
         <thead>
           <tr>
-            <th>_id</th><th>id</th><th>date</th><th>product</th><th>total</th><th>Acciones</th>
+            <th style="text-align:left;padding:10px;border-bottom:2px solid #e2e8f0;font-size:clamp(12px,2vw,14px);">Código</th>
+            <th style="text-align:left;padding:10px;border-bottom:2px solid #e2e8f0;font-size:clamp(12px,2vw,14px);">Producto</th>
+            <th style="text-align:right;padding:10px;border-bottom:2px solid #e2e8f0;font-size:clamp(12px,2vw,14px);">Total</th>
+            <th style="text-align:center;padding:10px;border-bottom:2px solid #e2e8f0;font-size:clamp(12px,2vw,14px);">Acc.</th>
           </tr>
         </thead>
         <tbody>
         {% for tx in transactions_list %}
-          <tr>
-            <td class="small">{{ tx._id }}</td>
-            <td>{{ tx.id }}</td>
-            <td>{{ tx.date }}</td>
-            <td>{{ tx.product }}</td>
-            <td>{{ tx.total }}</td>
-            <td>
-            <div class="actions">
-              <a class="btn secondary" href="{{ url_for('edit_transaction', id=tx._id) }}">Editar</a>
+          <tr style="border-bottom:1px solid #e2e8f0;">
+            <td style="padding:10px;word-break:break-word;font-size:14px;">{{ tx.codigo }}</td>
+            <td style="padding:10px;word-break:break-word;font-size:14px;">{{ tx.product }}</td>
+            <td style="padding:10px;text-align:right;font-size:14px;font-weight:bold;">{{ "%.2f"|format(tx.total|float) }}</td>
+            <td style="padding:10px;text-align:center;">
+            <div class="actions" style="display:flex;gap:4px;justify-content:center;flex-wrap:wrap;">
+              <a class="btn secondary" href="{{ url_for('edit_transaction', id=tx._id) }}" style="padding:6px 10px;font-size:12px;min-height:auto;">✎</a>
               <form method="post" action="{{ url_for('delete_transaction', id=tx._id) }}" style="display:inline;margin:0;">
-                <!-- Si usas CSRF, descomenta la siguiente línea -->
-                {# {{ csrf_token() }} #}
-                <button class="btn danger" type="submit" onclick="return confirm('Eliminar esta transacción?')">Eliminar</button>
+                <button class="btn danger" type="submit" onclick="return confirm('¿Eliminar?')" style="padding:6px 10px;font-size:12px;min-height:auto;">✕</button>
               </form>
             </div>
             </td>

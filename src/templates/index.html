@@ -1,49 +1,88 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=5.0, user-scalable=yes">
+    <meta name="apple-mobile-web-app-capable" content="true">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="theme-color" content="#ffffff">
     <title>Inventario Coca-cola</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        /* Optimizaciones para móviles */
+        @media (max-width: 768px) {
+            body {
+                font-size: 16px;
+                -webkit-user-select: none;
+                user-select: none;
+            }
+            input, select, button {
+                -webkit-appearance: none;
+                appearance: none;
+                border-radius: 8px;
+                padding: 12px;
+                font-size: 16px;
+                min-height: 44px;
+            }
+            .btn {
+                min-width: 140px !important;
+                min-height: 48px;
+                font-size: 16px;
+                -webkit-touch-callout: none;
+                touch-action: manipulation;
+            }
+            .form-mobile {
+                display: flex;
+                flex-direction: column;
+                gap: 12px;
+            }
+            .button-group {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 8px;
+                width: 100%;
+            }
+        }
+    </style>
 </head>
 <body>
     {% extends "base.html" %}
     {% block title %}Inicio — Inventario Coca-Cola{% endblock %}
 
     {% block content %}
-    <div style="display:flex;flex-direction:column;align-items:center;gap:12px;padding:24px 0;">
-        <h1 style="margin:0;">Inicio</h1>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:12px;padding:12px 8px;max-width:100%;">
+        <h1 style="margin:0;font-size:clamp(24px, 6vw, 32px);">Inicio</h1>
 
-        <div style="display:flex;gap:14px;justify-content:center;align-items:center;flex-wrap:wrap;">
-            <a class="btn" href="{{ url_for('download_report') }}" style="min-width:220px;text-align:center;padding:10px 16px;">Descargar Informe 1</a>
-            <a class="btn" href="{{ url_for('download_report2') }}" style="min-width:220px;text-align:center;padding:10px 16px;">Descargar Informe 2</a>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;justify-items:stretch;width:100%;max-width:600px;padding:0 8px;">
+            <a class="btn" href="{{ url_for('download_report') }}" style="text-align:center;padding:12px 8px;min-height:48px;display:flex;align-items:center;justify-content:center;">Informe 1</a>
+            <a class="btn" href="{{ url_for('download_report2') }}" style="text-align:center;padding:12px 8px;min-height:48px;display:flex;align-items:center;justify-content:center;">Informe 2</a>
         </div>
 
-        <div style="width:800px;max-width:100%;margin-top:18px;border-radius:8px;padding:14px;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,0.06);">
-            <h3 style="margin:0 0 8px 0;">Administrar plantillas Excel</h3>
-            <form method="post" action="{{ url_for('upload_template') }}" enctype="multipart/form-data" style="display:flex;gap:8px;align-items:center;">
-                <input type="file" name="template_file" accept=".xlsx,.xls" required>
-                <select name="target" style="padding:6px;border-radius:6px;border:1px solid #ddd;">
-                    <option value="PLANTILLA_INFORMACION_LIMPIA">Reemplazar: PLANTILLA_INFORMACION_LIMPIA.xlsx</option>
-                    <option value="INVENTARIO_PISO">Reemplazar: INVENTARIO_PISO.xlsx</option>
-                    <option value="custom" selected>Guardar como nombre original (custom)</option>
+        <div style="width:100%;max-width:600px;margin-top:18px;border-radius:8px;padding:14px;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,0.06);">
+            <h3 style="margin:0 0 12px 0;font-size:18px;">Administrar plantillas Excel</h3>
+            <form method="post" action="{{ url_for('upload_template') }}" enctype="multipart/form-data" style="display:flex;flex-direction:column;gap:10px;align-items:stretch;">
+                <input type="file" name="template_file" accept=".xlsx,.xls" required style="-webkit-appearance:none;appearance:none;padding:12px;border-radius:8px;border:1px solid #ddd;font-size:16px;">
+                <select name="target" style="padding:12px;border-radius:8px;border:1px solid #ddd;-webkit-appearance:none;appearance:none;background-image:url('data:image/svg+xml;charset=UTF-8,%3csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22currentColor%22%3e%3cpath d=%22M19 9l-7 7-7-7%22/%3e%3c/svg%3e');background-repeat:no-repeat;background-position:right 8px center;background-size:20px;padding-right:36px;font-size:16px;">
+                    <option value="PLANTILLA_INFORMACION_LIMPIA">PLANTILLA_INFORMACION_LIMPIA.xlsx</option>
+                    <option value="INVENTARIO_PISO">INVENTARIO_PISO.xlsx</option>
+                    <option value="custom" selected>Guardar como nombre original</option>
                 </select>
-                <button class="btn" type="submit">Subir plantilla</button>
+                <button class="btn" type="submit" style="min-height:48px;font-size:16px;padding:12px;">Subir plantilla</button>
             </form>
 
-            <div style="margin-top:12px;">
-                <strong>Plantillas disponibles:</strong>
-                <ul style="margin:6px 0 0 18px;">
+            <div style="margin-top:16px;">
+                <strong style="font-size:16px;">Plantillas disponibles:</strong>
+                <ul style="margin:8px 0 0 16px;padding:0;list-style:none;">
                     {% set tpl_dir = (config.TEMPLATE_DIR if config is defined and config.TEMPLATE_DIR else None) %}
                     {% for fn in (['PLANTILLA_INFORMACION_LIMPIA.xlsx','INVENTARIO_PISO.xlsx'] + []) %}
                         {% set path = ('excel_templates/' + fn) %}
-                        <li style="margin:6px 0;">
-                            {{ fn }} —
-                            <a href="{{ url_for('download_template', filename=fn) }}">Descargar</a>
+                        <li style="margin:8px 0;padding:8px;background:#f8f9fa;border-radius:6px;display:flex;justify-content:space-between;align-items:center;gap:8px;">
+                            <span style="flex:1;word-break:break-word;">{{ fn }}</span>
+                            <a href="{{ url_for('download_template', filename=fn) }}" style="white-space:nowrap;padding:6px 12px;">Descargar</a>
                         </li>
                     {% endfor %}
                 </ul>
-                <div class="small muted" style="margin-top:8px;">Sube un .xlsx para reemplazar plantillas nombradas o guarda como custom.</div>
+                <div class="small muted" style="margin-top:12px;font-size:14px;line-height:1.4;">Sube un .xlsx para reemplazar plantillas nombradas o guarda como custom.</div>
             </div>
         </div>
     </div>

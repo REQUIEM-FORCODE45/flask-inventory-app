@@ -32,7 +32,7 @@
       <div class="form-row">
         <div class="field" style="flex:1 1 40%;">
           <label for="product_search" class="small">Buscar producto</label>
-          <input id="product_search" type="text" placeholder="Buscar por nombre o código..." style="padding:8px;border-radius:8px;border:1px solid rgba(15,23,42,0.06);margin-bottom:6px;width:90%;">
+          <input id="product_search" type="text" inputmode="search" placeholder="Buscar por nombre o código..." style="padding:8px;border-radius:8px;border:1px solid rgba(15,23,42,0.06);margin-bottom:6px;width:100%;box-sizing:border-box;-webkit-appearance:none;appearance:none;">
           <label for="{{ form.product.id }}">Producto</label>
           {% if inventory_options %}
             <select name="{{ form.product.name }}" id="{{ form.product.id }}" size="6" style="width:100%;padding:6px;border-radius:6px;border:1px solid rgba(15,23,42,0.06);">
@@ -70,21 +70,21 @@
           <div class="form-row" style="margin-top:6px;">
             <div class="field">
               <label class="small">Estiba</label>
-              <input id="temp_shelves" name="temp_shelves" type="number" min="0" step="1" value="">
+              <input id="temp_shelves" name="temp_shelves" type="number" min="0" inputmode="decimal" value="">
             </div>
             <div class="field">
               <label class="small">Piso</label>
-              <input id="temp_floors" name="temp_floors" type="number" min="0" step="1" value="">
+              <input id="temp_floors" name="temp_floors" type="number" min="0" inputmode="decimal" value="">
             </div>
             <div class="field">
               <label class="small">Pacas</label>
               <!-- packs se multiplica por el campo 'packs' del inventario -->
-              <input id="temp_packs" name="temp_packs" type="number" min="0" step="1" value="">
+              <input id="temp_packs" name="temp_packs" type="number" min="0" inputmode="decimal" value="">
             </div>
             <div class="field">
               <label class="small">unidades (decimal)</label>
               <!-- cajas se SUMAN directamente, no tienen multiplicador -->
-              <input id="temp_cajas" name="temp_cajas" type="number" min="0" step="1" value="">
+              <input id="temp_cajas" name="temp_cajas" type="number" min="0" inputmode="decimal" value="">
             </div>
           </div>
         </div>
@@ -122,7 +122,11 @@
       const inpCajas = document.getElementById('temp_cajas'); // nuevo
       const totalField = document.getElementsByName('{{ form.total.name }}')[0];
 
-      function parseNum(v){ const n = parseFloat(v); return isNaN(n) ? 0 : n; }
+      function parseNum(v){ 
+        if (typeof v === 'string') v = v.trim();
+        const n = parseFloat(v); 
+        return isNaN(n) ? 0 : n; 
+      }
 
       function computeTotal(){
         let ms = 1, mf = 1, mp = 1;
@@ -133,12 +137,12 @@
           mp = parseNum(opt.dataset.packs);
         }
 
-        const ts = parseNum(inpShelves.value ? inpShelves.value : 0);
-        const tf = parseNum(inpFloors.value ? inpFloors.value : 0);
-        const tp = parseNum(inpPacks.value ? inpPacks.value : 0);
-        const tc = parseNum(inpCajas.value ? inpCajas.value : 0); // cajas sumadas directamente
+        const ts = parseNum(inpShelves?.value || 0);
+        const tf = parseNum(inpFloors?.value || 0);
+        const tp = parseNum(inpPacks?.value || 0);
+        const tc = parseNum(inpCajas?.value || 0); // cajas sumadas directamente
 
-        const total = (ts * ms) + (tf * mf) + (tp) + tc/mp;
+        const total = (ts * ms) + (tf * mf) + (tp * mp) + tc;
         if (totalField) totalField.value = total;
       }
 
@@ -148,27 +152,28 @@
         const opt = select.options[select.selectedIndex];
         if (opt && opt.dataset){
           const code = opt.dataset.code || '';
-          codigoDisplay.value = code;
-          codigoHidden.value = code;
+          if (codigoDisplay) codigoDisplay.value = code;
+          if (codigoHidden) codigoHidden.value = code;
         } else {
-          codigoDisplay.value = '';
-          codigoHidden.value = '';
+          if (codigoDisplay) codigoDisplay.value = '';
+          if (codigoHidden) codigoHidden.value = '';
         }
       }
 
-      // filtro simple para el select
+      // filtro simple para el select - iOS compatible
       function filterOptions(){
+        if (!select || !search) return;
         const q = search.value.trim().toLowerCase();
-        for (let i=0;i<select.options.length;i++){
+        for (let i = 0; i < select.options.length; i++){
           const opt = select.options[i];
           // no ocultar la primera vacía
-          if (i===0){ opt.hidden = false; continue; }
+          if (i === 0){ opt.hidden = false; continue; }
           const text = (opt.text || '').toLowerCase();
           const code = (opt.dataset.code || '').toLowerCase();
-          opt.hidden = q ? !(text.includes(q) || code.includes(q)) : false;
+          const match = q.length === 0 || text.includes(q) || code.includes(q);
+          opt.hidden = !match;
         }
       }
-
 
       // eventos
       if (select){
@@ -184,23 +189,29 @@
             // Si hay id seleccionado, pedir datos adicionales al servidor y mostrarlos en el toast
             const selId = select.value;
             if (selId) {
-              fetch(`/api/inventory/${encodeURIComponent(selId)}`)
-                .then(resp => resp.json())
+              const apiUrl = `/api/inventory/${selId}`;
+              fetch(apiUrl)
+                .then(resp => {
+                  if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
+                  return resp.json();
+                })
                 .then(data => {
                   if (data && !data.error) {
                     const code = data.code || '';
-                    //const packs = (typeof data.packs !== 'undefined') ? data.packs : '';
-                    //const extra = `${code ? 'Código: ' + code : ''}${(code && packs) ? ' — ' : ''}${packs ? 'Packs: ' + packs : ''}`;
                     const suma = (typeof data.transactions_today_sum !== 'undefined') ? data.transactions_today_sum : '0';
                     Swal.fire({
                       toast: true,
                       position: 'top-end',
                       icon: 'info',
                       title: 'Producto seleccionado',
-                      text: `${pname}${suma ? ' — ' + '**' + suma + '**' + ' unidades transaccionadas hoy' : ' — Ninguna unidad transaccionada hoy'} `,
+                      text: `${pname}${suma ? ' — ' + suma + ' unidades hoy' : ' — Ninguna unidad hoy'}`,
                       showConfirmButton: false,
                       timer: 6000,
-                      timerProgressBar: true
+                      timerProgressBar: true,
+                      didOpen: (toast) => {
+                        toast.addEventListener('mouseenter', Swal.stopTimer);
+                        toast.addEventListener('mouseleave', Swal.resumeTimer);
+                      }
                     });
                   } else {
                     Swal.fire({
@@ -245,34 +256,46 @@
           }
         });
       }
-      [inpShelves, inpFloors, inpPacks, inpCajas].forEach(el=>{
+
+      // Listeners para campos numéricos
+      [inpShelves, inpFloors, inpPacks, inpCajas].forEach(el => {
         if (!el) return;
         el.addEventListener('input', computeTotal);
         el.addEventListener('change', computeTotal);
+        el.addEventListener('blur', computeTotal);
       });
+
+      // Listener para búsqueda - iOS compatible
       if (search){
         search.addEventListener('input', filterOptions);
+        search.addEventListener('change', filterOptions);
+        // Para iOS, usar también 'keyup' como fallback
+        search.addEventListener('keyup', filterOptions);
+        // Manejar eventos de composición en iOS
+        search.addEventListener('compositionend', filterOptions);
       }
 
       // submit: si hay nombre manual prevalece y código manual también
       const formEl = document.getElementById('tx-form');
-      formEl.addEventListener('submit', function(){
-        if (custom && custom.value.trim().length > 0){
-          let hidden = formEl.querySelector('input[name="{{ form.product.name }}"]');
-          if (!hidden){
-            hidden = document.createElement('input');
-            hidden.type = 'hidden';
-            hidden.name = "{{ form.product.name }}";
-            formEl.appendChild(hidden);
+      if (formEl) {
+        formEl.addEventListener('submit', function(){
+          if (custom && custom.value.trim().length > 0){
+            let hidden = formEl.querySelector('input[name="{{ form.product.name }}"]');
+            if (!hidden){
+              hidden = document.createElement('input');
+              hidden.type = 'hidden';
+              hidden.name = "{{ form.product.name }}";
+              formEl.appendChild(hidden);
+            }
+            hidden.value = custom.value.trim();
+            if (select) select.disabled = true;
           }
-          hidden.value = custom.value.trim();
-          if (select) select.disabled = true;
-        }
-        // if user entered manual code, ensure it's in hidden field
-        if (codigoCustom && codigoCustom.value.trim().length>0){
-          codigoHidden.value = codigoCustom.value.trim();
-        }
-      });
+          // if user entered manual code, ensure it's in hidden field
+          if (codigoCustom && codigoCustom.value.trim().length > 0){
+            if (codigoHidden) codigoHidden.value = codigoCustom.value.trim();
+          }
+        });
+      }
 
       // init
       updateCodigoFromSelect();

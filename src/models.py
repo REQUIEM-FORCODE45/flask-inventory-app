@@ -65,7 +65,7 @@ def add_transaction(tx):
     result = db.transactions.insert_one(tx)
     return result.inserted_id
 
-def find_inventory(query=None, limit=150):
+def find_inventory(query=None, limit=300):
     query = query or {}
     return list(get_db().inventory.find(query).limit(limit))
 

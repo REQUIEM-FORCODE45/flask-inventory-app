@@ -2,7 +2,7 @@ import json
 from bson import ObjectId
 
 # Lee el archivo con la tabla (usa el nombre real de tu archivo)
-with open("tabla.txt", "r", encoding="utf-8") as f:
+with open("flask-inventory-app/tabla.txt", "r", encoding="utf-8") as f:
     lines = f.readlines()
 
 data = []
@@ -13,7 +13,7 @@ for line in lines:
     if not line or line.startswith("CODIGO"):  # Ignora líneas vacías y encabezados
         continue
 
-    parts = line.split(",")  # separador coma
+    parts = line.split("\t")  # separador tabulador
     if len(parts) < 5:
         continue
 
