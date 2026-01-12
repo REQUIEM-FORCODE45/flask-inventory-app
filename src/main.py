@@ -653,19 +653,27 @@ def download_report2():
 
         try:
             total_val = str(t.get('total', ''))
+            '''
+            total_val = total_val.split('.')
+            if len(total_val) > 1:
+                total_val = total_val[0] + ',' + total_val[1]
+            else:
+                total_val = total_val[0]
+
             total_val = total_val.split('.')
             packd = t.get('packs', '')
             if len(total_val) > 1:
                 total_val = total_val[0] + ',' + str(int(round(((int(total_val[1]) / (10 ** len(total_val[1]))) * packd), 1)))
             else:
                 total_val = total_val[0]
+            '''
         except Exception as e:
             print(f"Error processing total for {code}: {e}")
             total_val = 'Error'
 
         tx_map[code] = {
             'product': t.get('product', ''),
-            'total_val': total_val
+            'total_val': float(total_val)
         }
 
     # abrir plantilla y hoja 'Fisico'

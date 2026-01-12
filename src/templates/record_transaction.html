@@ -142,7 +142,7 @@
         const tp = parseNum(inpPacks?.value || 0);
         const tc = parseNum(inpCajas?.value || 0); // cajas sumadas directamente
 
-        const total = (ts * ms) + (tf * mf) + (tp * mp) + tc;
+        const total = (ts * ms) + (tf * mf) + (tp) + tc/mp;
         if (totalField) totalField.value = total;
       }
 
